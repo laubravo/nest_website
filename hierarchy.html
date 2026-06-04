@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NEST — hierarchy interactive</title>
+<style>
+  @font-face { font-family:'Quicksand'; font-weight:400; font-display:swap;
+    src:url('./fonts/Quicksand/static/Quicksand-Regular.ttf') format('truetype'); }
+  @font-face { font-family:'Quicksand'; font-weight:600; font-display:swap;
+    src:url('./fonts/Quicksand/static/Quicksand-SemiBold.ttf') format('truetype'); }
+  @font-face { font-family:'Quicksand'; font-weight:700; font-display:swap;
+    src:url('./fonts/Quicksand/static/Quicksand-Bold.ttf') format('truetype'); }
+  :root{ --blue-d:#5887B0; --gold-d:#FFC000; --purple-d:#89759C; --gray-d:#BFBFBF; }
+  *{box-sizing:border-box}
+  body{font-family:'Quicksand',system-ui,sans-serif;color:#1f2937;margin:0;padding:24px 18px;background:#fff}
+  .wrap{max-width:1180px;margin:0 auto}
+  .sub{color:#6b7280;font-size:14px;margin:0 0 14px}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .tab{cursor:pointer;border:2px solid transparent;border-radius:999px;padding:7px 16px;
+       font-family:inherit;font-weight:600;font-size:13px;color:#374151;background:#f3f4f6;transition:.12s}
+  .tab[data-level="open"].active{background:#111827;color:#fff}
+  .tab[data-level="contextual"]{background:color-mix(in srgb,var(--blue-d) 16%,#fff)}
+  .tab[data-level="behavioral"]{background:color-mix(in srgb,var(--gold-d) 22%,#fff)}
+  .tab[data-level="interpersonal"]{background:color-mix(in srgb,var(--purple-d) 18%,#fff)}
+  .tab.active{box-shadow:0 3px 12px rgba(0,0,0,.12)}
+  .tab[data-level="contextual"].active{border-color:var(--blue-d)}
+  .tab[data-level="behavioral"].active{border-color:var(--gold-d)}
+  .tab[data-level="interpersonal"].active{border-color:var(--purple-d)}
+
+  .stage{position:relative;border:1px solid #eef0f2;border-radius:12px;padding:10px;min-height:120px}
+  .layer{position:absolute;inset:10px;width:calc(100% - 20px);height:auto;opacity:0;
+         transition:opacity .25s ease;pointer-events:none}
+  .layer.show{opacity:1;position:relative;inset:auto;pointer-events:auto}
+  .missing{display:none;color:#9ca3af;font-size:14px;text-align:center;padding:48px 16px;
+           border:2px dashed #e5e7eb;border-radius:10px}
+  .missing.show{display:block}
+  .missing code{background:#f3f4f6;padding:1px 6px;border-radius:5px}
+
+  /* hover hotspots over the left pyramid tiers */
+  .hotspots{position:absolute;inset:10px;z-index:5}
+  .hot{position:absolute;cursor:pointer;border-radius:8px;transition:background .12s, box-shadow .12s}
+  .hot:hover{background:rgba(17,24,39,.06);box-shadow:inset 0 0 0 2px rgba(17,24,39,.12)}
+
+  .openpanel{display:none;margin-top:14px;padding:16px 20px;border-radius:12px;background:#f8fafc;border:1px solid #eef0f2}
+  .openpanel.show{display:block}
+  .openpanel h2{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#6b7280;margin:0 0 8px}
+  .openpanel p{font-size:16px;line-height:1.8;margin:0;color:#1f2937}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="sub">Hover a pyramid tier (or click a tab) to isolate a level of the interaction.</p>
+
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-level="open">Open</button>
+    <button class="tab" data-level="contextual">Contextual</button>
+    <button class="tab" data-level="behavioral">Behavioral</button>
+    <button class="tab" data-level="interpersonal">Interpersonal</button>
+  </div>
+
+  <div class="stage" id="stage">
+    <img class="layer show" data-level="all"           alt="full hierarchy">
+    <img class="layer"      data-level="contextual"    alt="contextual level">
+    <img class="layer"      data-level="behavioral"    alt="behavioral level">
+    <img class="layer"      data-level="interpersonal" alt="interpersonal level">
+    <div class="missing" id="missing"></div>
+
+    <div class="hotspots" id="hotspots">
+      <div class="hot" data-level="open"          style="left:1%;top:18%;width:21%;height:13%"></div>
+      <div class="hot" data-level="interpersonal" style="left:1%;top:33%;width:21%;height:13%"></div>
+      <div class="hot" data-level="behavioral"    style="left:1%;top:47%;width:21%;height:20%"></div>
+      <div class="hot" data-level="contextual"    style="left:1%;top:69%;width:21%;height:23%"></div>
+    </div>
+  </div>
+
+  <div class="openpanel show" id="openpanel">
+    <h2>Open description</h2>
+    <p>
+      The woman and the boy are sitting at a table eating. The boy points at a glass cup,
+      the woman looks at the cup surprised and then the woman picks up the cup.
+      <span style="color:#9ca3af">[…]</span>
+    </p>
+  </div>
+</div>
+
+<script>
+  const SRC = {
+    all:           './figures/levels/all.svg',
+    contextual:    './figures/levels/contextual.svg',
+    behavioral:    './figures/levels/behavioral.svg',
+    interpersonal: './figures/levels/interpersonal.svg',
+  };
+  const layers={}; let pinned='open';
+  document.querySelectorAll('.layer').forEach(img=>{
+    const lv=img.dataset.level; layers[lv]=img; img.src=SRC[lv];
+    img.addEventListener('error',()=>{ img.dataset.broken='1'; });
+  });
+
+  function display(lv){
+    const imgLevel=(lv==='open')?'all':lv;       // Open shows the full figure
+    document.getElementById('openpanel').classList.toggle('show', lv==='open');
+    const m=document.getElementById('missing');
+    if(layers[imgLevel] && layers[imgLevel].dataset.broken){
+      Object.values(layers).forEach(i=>i.classList.remove('show'));
+      m.classList.add('show');
+      m.innerHTML=`<b>${imgLevel}.svg</b> isn't added yet — export it to <code>${SRC[imgLevel]}</code> and refresh.`;
+      return;
+    }
+    m.classList.remove('show');
+    Object.entries(layers).forEach(([k,img])=>img.classList.toggle('show', k===imgLevel));
+  }
+  function setPinned(lv){
+    pinned=lv;
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.level===lv));
+    display(lv);
+  }
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setPinned(t.dataset.level)));
+  document.querySelectorAll('.hot').forEach(h=>h.addEventListener('mouseenter',()=>display(h.dataset.level)));
+  document.getElementById('hotspots').addEventListener('mouseleave',()=>display(pinned));
+</script>
+</body>
+</html>

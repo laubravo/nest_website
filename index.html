@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEST — Preview</title>
+  <meta name="description" content="NEST: Evaluating Nonverbal Social Reasoning in Early Childhood (layout preview)." />
+  <!-- NOTE: this is a no-build static PREVIEW using the Tailwind CDN so you can
+       see the layout without a working node/vite toolchain. The real site will
+       be Vite + React + Tailwind with these same sections as components. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital@0;1&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+          },
+          colors: {
+            // one accent per NEST schema level
+            ctx: '#2f9e7f',   // contextual
+            beh: '#e0a526',   // behavioral
+            inter: '#b8569b', // interpersonal
+            open: '#5b8def',  // open description
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .filler { color: #94a3b8; } /* tag obvious placeholder copy */
+  </style>
+</head>
+
+<body class="font-sans text-slate-800 antialiased bg-white">
+
+  <!-- ╔══════════════════════════════ NAV ══════════════════════════════╗ -->
+  <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/80 backdrop-blur">
+    <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3 text-sm">
+      <a href="#top" class="font-bold tracking-tight">NEST</a>
+      <div class="hidden gap-6 sm:flex">
+        <a href="#overview" class="hover:text-slate-950">Overview</a>
+        <a href="#explore" class="hover:text-slate-950">Explore</a>
+        <a href="#findings" class="hover:text-slate-950">Findings</a>
+        <a href="#results" class="hover:text-slate-950">Results</a>
+        <a href="#bibtex" class="hover:text-slate-950">BibTeX</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ╔════════════════════════════ HERO ════════════════════════════╗ -->
+    <section class="mx-auto max-w-4xl px-6 pt-16 pb-10 text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-slate-400">NeurIPS 2026 · Datasets &amp; Benchmarks <span class="filler">(confirm track)</span></p>
+      <h1 class="font-serif text-4xl italic leading-tight text-slate-900 sm:text-5xl">
+        Before Words, Beyond Speech
+      </h1>
+      <h2 class="mx-auto mt-3 max-w-2xl text-xl font-semibold text-slate-700 sm:text-2xl">
+        Evaluating Nonverbal Social Reasoning in Early Childhood
+      </h2>
+
+      <!-- authors -->
+      <div class="mt-6 text-lg text-slate-700">
+        <a class="hover:underline" href="#">Marie Amale Huynh</a><sup>*</sup>,
+        <a class="hover:underline" href="#">Laura Bravo-Sánchez</a><sup>*</sup>,
+        <a class="hover:underline" href="#">Lauren Klein</a>,
+        <a class="hover:underline" href="#">Nick Haber</a>,
+        <a class="hover:underline" href="#">Philip Fisher</a>,
+        <a class="hover:underline" href="#">Serena Yeung-Levy</a>
+      </div>
+      <div class="mt-1 text-slate-500">Stanford University</div>
+      <div class="mt-1 text-sm text-slate-400"><sup>*</sup> Equal contribution</div>
+
+      <!-- link buttons -->
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#" class="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700">📄 Paper</a>
+        <a href="#" class="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700">📚 arXiv</a>
+        <a href="#" class="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700">💻 Code</a>
+        <a href="#" class="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700">🤗 Data</a>
+      </div>
+      <p class="filler mt-3 text-xs">(link URLs are placeholders)</p>
+
+      <!-- teaser figure placeholder -->
+      <div class="mt-10 flex aspect-[16/7] w-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50">
+        <span class="filler text-sm">[ teaser figure — NEST overview / schema diagram ]</span>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════ ABSTRACT ══════════════════════════╗ -->
+    <section class="border-y border-slate-100 bg-slate-50/60">
+      <div class="mx-auto max-w-3xl px-6 py-14">
+        <h2 class="mb-4 text-center text-2xl font-bold">Abstract</h2>
+        <p class="text-justify leading-relaxed text-slate-700">
+          Children's earliest years are a period of intense social learning, during which meaning is
+          built through gaze, gesture, and physical contact. Yet this critical aspect of social
+          interaction remains under-evaluated in multimodal video understanding. We introduce
+          <strong>NEST</strong> (Naturalistic Early-childhood Social inTeractions), the first child-centric
+          benchmark for nonverbal social reasoning — 1,208 manually annotated clips (~12s) with 14,025
+          structured questions, organized by a compositional schema spanning contextual, behavioral,
+          interpersonal, and open-ended reasoning.
+          <span class="filler">[ filler — replace with the final abstract verbatim from the paper. ]</span>
+        </p>
+        <div class="mt-8 grid grid-cols-2 gap-4 text-center sm:grid-cols-4">
+          <div class="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-100"><div class="text-2xl font-bold">1,208</div><div class="text-xs text-slate-500">clips (~12s)</div></div>
+          <div class="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-100"><div class="text-2xl font-bold">14,025</div><div class="text-xs text-slate-500">questions</div></div>
+          <div class="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-100"><div class="text-2xl font-bold">4</div><div class="text-xs text-slate-500">reasoning levels</div></div>
+          <div class="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-100"><div class="text-2xl font-bold">child</div><div class="text-xs text-slate-500">-centric, nonverbal</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════ OVERVIEW ══════════════════════════╗ -->
+    <section id="overview" class="mx-auto max-w-6xl px-6 py-16">
+      <h2 class="mb-2 text-center text-2xl font-bold">The NEST schema</h2>
+      <p class="mx-auto mb-8 max-w-2xl text-center text-slate-600">
+        A single interaction decomposes into progressive levels of social reasoning — contextual,
+        behavioral, interpersonal, and an open-ended description.
+        <span class="filler">[ filler intro — replace with Fig. 1 / Fig. 2 explanation. ]</span>
+      </p>
+      <!-- live hierarchy widget, kept as its own file -->
+      <iframe id="hierarchyFrame" src="./hierarchy.html" title="NEST interaction hierarchy"
+              scrolling="no" class="w-full rounded-2xl border border-slate-200"
+              style="height:560px;border:1px solid #e5e7eb"></iframe>
+    </section>
+
+    <!-- ╔═══════════════════ EXPLORE (centerpiece) ═══════════════════╗ -->
+    <section id="explore" class="border-y border-slate-100 bg-slate-50/60">
+      <div class="mx-auto max-w-5xl px-6 py-16">
+        <h2 class="mb-2 text-center text-2xl font-bold">Explore the benchmark</h2>
+        <p class="mx-auto mb-10 max-w-2xl text-center text-slate-600">
+          A clip paired with its hierarchical questions. <span class="filler">[ a few cleared example clips will be selectable here. ]</span>
+        </p>
+
+        <div class="grid gap-8 lg:grid-cols-2">
+          <!-- video -->
+          <div>
+            <div class="flex aspect-video w-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-100">
+              <span class="filler text-sm">▶ [ example clip — HTML5 &lt;video&gt; player ]</span>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <div class="h-14 w-20 rounded-md border-2 border-slate-900 bg-slate-200"></div>
+              <div class="h-14 w-20 rounded-md bg-slate-200"></div>
+              <div class="h-14 w-20 rounded-md bg-slate-200"></div>
+              <span class="filler self-center text-xs">[clip thumbnails]</span>
+            </div>
+          </div>
+
+          <!-- QA hierarchy -->
+          <div class="space-y-3">
+            <div class="rounded-lg border-l-4 border-ctx bg-white p-4 shadow-sm">
+              <div class="text-xs font-bold uppercase tracking-wide text-ctx">Contextual</div>
+              <p class="mt-1 text-sm"><span class="font-medium">Q:</span> Where are they? <span class="filler">[filler Q]</span></p>
+              <p class="text-sm text-slate-500"><span class="font-medium">A:</span> In a library. <span class="filler">[filler A]</span></p>
+            </div>
+            <div class="rounded-lg border-l-4 border-beh bg-white p-4 shadow-sm">
+              <div class="text-xs font-bold uppercase tracking-wide text-beh">Behavioral</div>
+              <p class="mt-1 text-sm"><span class="font-medium">Q:</span> What is red doing at second 3? <span class="filler">[filler Q]</span></p>
+              <p class="text-sm text-slate-500"><span class="font-medium">A:</span> Pointing. <span class="filler">[filler A]</span></p>
+            </div>
+            <div class="rounded-lg border-l-4 border-inter bg-white p-4 shadow-sm">
+              <div class="text-xs font-bold uppercase tracking-wide text-inter">Interpersonal</div>
+              <p class="mt-1 text-sm"><span class="font-medium">Q:</span> How does green respond to red pointing? <span class="filler">[filler Q]</span></p>
+              <p class="text-sm text-slate-500"><span class="font-medium">A:</span> Smiles. <span class="filler">[filler A]</span></p>
+            </div>
+            <div class="rounded-lg border-l-4 border-open bg-white p-4 shadow-sm">
+              <div class="text-xs font-bold uppercase tracking-wide text-open">Open</div>
+              <p class="mt-1 text-sm"><span class="font-medium">Q:</span> Describe the interaction. <span class="filler">[filler Q]</span></p>
+              <p class="text-sm text-slate-500"><span class="font-medium">A:</span> Person red points to green's book and green smiles… <span class="filler">[filler A]</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════ FINDINGS ══════════════════════════╗ -->
+    <section id="findings" class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="mb-10 text-center text-2xl font-bold">Key findings</h2>
+      <div class="space-y-6">
+        <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
+          <div class="text-sm font-bold text-slate-400">Finding 1</div>
+          <p class="mt-1 text-lg font-medium">Strong contextual recognition, sharp collapse on behavioral &amp; interpersonal cues.
+            <span class="filler text-base font-normal">[ filler takeaway. ]</span></p>
+        </div>
+        <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
+          <div class="text-sm font-bold text-slate-400">Finding 2</div>
+          <p class="mt-1 text-lg font-medium">Models under-predict child–child interactions and miss brief temporal cues.
+            <span class="filler text-base font-normal">[ filler takeaway. ]</span></p>
+        </div>
+        <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
+          <div class="text-sm font-bold text-slate-400">Finding 3</div>
+          <p class="mt-1 text-lg font-medium">Poor consequence grounding persists in real coaching workflows.
+            <span class="filler text-base font-normal">[ filler takeaway. ]</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════ RESULTS ══════════════════════════╗ -->
+    <section id="results" class="border-y border-slate-100 bg-slate-50/60">
+      <div class="mx-auto max-w-5xl px-6 py-16">
+        <h2 class="mb-2 text-center text-2xl font-bold">Benchmark results</h2>
+        <p class="mx-auto mb-8 max-w-2xl text-center text-slate-600">
+          <span class="filler">[ filler table — to be filled with the real numbers from the paper. ]</span>
+        </p>
+        <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+          <table class="min-w-full bg-white text-sm">
+            <thead class="bg-slate-100 text-slate-600">
+              <tr>
+                <th class="px-4 py-3 text-left font-semibold">Model</th>
+                <th class="px-4 py-3 text-right font-semibold text-ctx">Contextual</th>
+                <th class="px-4 py-3 text-right font-semibold text-beh">Behavioral</th>
+                <th class="px-4 py-3 text-right font-semibold text-inter">Interpersonal</th>
+                <th class="px-4 py-3 text-right font-semibold text-open">Open</th>
+                <th class="px-4 py-3 text-right font-semibold">Average</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 filler">
+              <tr><td class="px-4 py-3 text-slate-800">Model A</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td></tr>
+              <tr><td class="px-4 py-3 text-slate-800">Model B</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td></tr>
+              <tr><td class="px-4 py-3 text-slate-800">Human</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════ BIBTEX ══════════════════════════╗ -->
+    <section id="bibtex" class="mx-auto max-w-4xl px-6 py-16">
+      <h2 class="mb-4 text-2xl font-bold">BibTeX</h2>
+      <pre class="overflow-x-auto rounded-xl bg-slate-900 p-5 text-sm text-slate-100"><code>@inproceedings{huynh2026nest,
+  title     = {Before Words, Beyond Speech: Evaluating Nonverbal Social Reasoning in Early Childhood},
+  author    = {Huynh, Marie Amale and Bravo-S\'anchez, Laura and Klein, Lauren and
+               Haber, Nick and Fisher, Philip and Yeung-Levy, Serena},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks},
+  year      = {2026},
+}</code></pre>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 py-8 text-center text-sm text-slate-400">
+    Layout preview · NEST · Stanford University
+  </footer>
+
+  <!-- size the hierarchy iframe to its content (same-origin) -->
+  <script>
+    (function(){
+      const f=document.getElementById('hierarchyFrame'); if(!f) return;
+      function fit(){
+        try{ const d=f.contentDocument||f.contentWindow.document;
+          const h=d.body ? d.body.scrollHeight : 0; if(h) f.style.height=(h+8)+'px';
+        }catch(e){}
+      }
+      f.addEventListener('load',()=>{ fit(); setTimeout(fit,300); });
+      window.addEventListener('resize',fit);
+    })();
+  </script>
+</body>
+</html>
