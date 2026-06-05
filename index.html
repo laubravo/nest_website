@@ -42,6 +42,15 @@
     @media (max-width: 640px){
       .gabs-row{ grid-template-columns: 1fr; }
     }
+
+    /* results: two figures side by side; hover one to bring it forward */
+    .rfig { transition: opacity .2s ease, transform .2s ease; }
+    .rcompare:hover .rfig { opacity: .4; }            /* dim both on row hover … */
+    .rcompare .rfig:hover { opacity: 1; transform: scale(1.03); } /* … except the hovered one */
+    @media (max-width: 768px){                         /* stacked on mobile: no dimming */
+      .rcompare:hover .rfig { opacity: 1; }
+      .rcompare .rfig:hover { transform: none; }
+    }
   </style>
 </head>
 
@@ -268,31 +277,37 @@
     <section id="results" class="mx-auto max-w-5xl px-6 py-16">
       <h2 class="mb-2 text-center text-2xl font-bold">Benchmark results highlights</h2>
       <p class="mx-auto mb-10 max-w-2xl text-center text-slate-600">
-        Accuracy drops sharply as reasoning moves up the hierarchy.
-        <span class="filler">[ filler — replace with the headline result. ]</span>
+        With NEST we can analyze results across models or delve into a single model. Models reliably identify contextual attributes but, in contrast to humans, performance collapses as tasks shift towards more complex social reasoning.
       </p>
 
-      <!-- per-level accuracy chart -->
-      <div class="mb-12 flex aspect-[16/7] w-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50">
-        <span class="filler text-sm">[ per-level accuracy chart — the "collapse" across contextual → open ]</span>
+      <!-- two complementary views side by side; hover one to bring it forward -->
+      <div class="rcompare mb-12 grid items-center gap-6 md:grid-cols-2">
+        <figure class="rfig">
+          <img src="./figures/res1.svg" alt="Per-level accuracy across models; performance collapses up the hierarchy" class="w-full" />
+        </figure>
+        <figure class="rfig">
+          <img src="./figures/res2.svg" alt="Sankey of Qwen 3.5-27B: accuracy levels to correct/incorrect to tasks" class="w-full" />
+        </figure>
       </div>
 
       <!-- finding cards -->
       <div class="grid gap-6 sm:grid-cols-3">
-        <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
-          <div class="text-sm font-bold text-slate-400">Finding 1</div>
-          <p class="mt-1 font-medium">Strong contextual recognition, sharp collapse on behavioral &amp; interpersonal cues.
+        <!-- <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
+          <div class="text-sm font-bold text-slate-400">Context</div>
+          <p class="mt-1 font-medium">Models excel at contextual tasks (age, location and main activity).
             <span class="filler text-sm font-normal">[ filler. ]</span></p>
+        </div> -->
+        <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
+          <div class="text-sm font-bold text-slate-400">Result 1</div>
+          <p class="mt-1 font-medium">Models are effective finding the object of attention but struggle with temporal grounding as events become shorter.
         </div>
         <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
-          <div class="text-sm font-bold text-slate-400">Finding 2</div>
-          <p class="mt-1 font-medium">Models under-predict child–child interactions and miss brief temporal cues.
-            <span class="filler text-sm font-normal">[ filler. ]</span></p>
+          <div class="text-sm font-bold text-slate-400">Result 2</div>
+          <p class="mt-1 font-medium"> Separating the initiator-responder for an action reaction pair, we find that child-child and adult-adult interactions perform worse than mixed interactions.
         </div>
         <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
-          <div class="text-sm font-bold text-slate-400">Finding 3</div>
-          <p class="mt-1 font-medium">Poor consequence grounding persists in real coaching workflows.
-            <span class="filler text-sm font-normal">[ filler. ]</span></p>
+          <div class="text-sm font-bold text-slate-400">Result 3</div>
+          <p class="mt-1 font-medium">Specialist models (e.g. gaze estimation) perform on par or better than VLMs depending on the task, making them preferable based on resources.
         </div>
       </div>
 
@@ -343,7 +358,7 @@
       <h2 class="mb-4 text-2xl font-bold">BibTeX</h2>
       <pre class="overflow-x-auto rounded-xl bg-slate-900 p-5 text-sm text-slate-100"><code>@inproceedings{huynh2026nest,
   title     = {Before Words, Beyond Speech: Evaluating Nonverbal Social Reasoning in Early Childhood},
-  author    = {Huynh, Marie Amale and Bravo-S\'anchez, Laura and Klein, Lauren and
+  author    = {Huynh, Marie Amale* and Bravo-S\'anchez, Laura* and Klein, Lauren and
                Haber, Nick and Fisher, Philip and Yeung-Levy, Serena},
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks},
   year      = {2026},
