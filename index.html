@@ -62,7 +62,7 @@
       <a href="#top" class="font-bold tracking-tight">NEST</a>
       <div class="hidden gap-6 sm:flex">
         <a href="#abstract" class="hover:text-slate-950">Abstract</a>
-        <a href="#schema" class="hover:text-slate-950">Schema</a>
+        <a href="#schema" class="hover:text-slate-950">Annotation schema</a>
         <a href="#explore" class="hover:text-slate-950">Explore</a>
         <a href="#why" class="hover:text-slate-950">Why NEST</a>
         <a href="#results" class="hover:text-slate-950">Results</a>
@@ -107,8 +107,8 @@
         <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">📄 Paper</a>
         -->
         <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">📚 arXiv</a>
-        <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">💻 Code</a>
-        <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">🤗 Data</a>
+        <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">💻 Code (coming soon)</a>
+        <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">🤗 Data (coming soon)</a>
       </div>
     </section>
 
@@ -117,13 +117,9 @@
       <div class="mx-auto max-w-5xl px-6 py-14">
 
         <!-- first-level explainer: what the paper is about (plain language) -->
-        <!-- <p class="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-slate-700">
-          Long before they can speak, children communicate through gaze, gesture, and touch. <strong>NEST</strong>
-          is the first benchmark for testing whether AI models can reason about this nonverbal social behavior,
-          using naturalistic videos of early-childhood interactions and a hierarchy of questions that build from
-          basic context up to open-ended social understanding.
-          <span class="filler">[ explainer — adjust wording. ]</span>
-        </p> -->
+        <p class="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-slate-700">
+          Long before humans can speak, we communicate through gaze, gesture, and touch. Yet this preverbal domain remains a blind spot in modern video understanding. We introduce <strong>NEST</strong> the first benchmark for measuring video VLMs on nonverbal social reasoning in naturalistic early-childhood videos. 
+        </p>
 
         <!-- ╔═══════ GRAPHICAL ABSTRACT ═══════╗
              Built from the exported figure pieces in figures/graphical_abstract/:
@@ -148,12 +144,29 @@
           </div>
         </figure>
 
-        <!-- formal abstract -->
+        <!-- formal contributions -->
         <div class="mx-auto max-w-3xl">
-          <h2 class="mb-4 text-center text-2xl font-bold">Abstract</h2>
-          <p class="text-justify leading-relaxed text-slate-700">
-            Children's earliest years are a period of intense social learning, during which meaning is built through gaze, gesture, and physical contact. Yet, this critical aspect of social interaction remains under-evaluated in multimodal video understanding, as existing benchmarks prioritize the conversation-driven interactions of adults. We address this gap with <strong>NEST</strong> (<strong>N</strong>aturalistic <strong>E</strong>arly-childhood <strong>S</strong>ocial in<strong>T</strong>eractions), the first child-centric benchmark for nonverbal social reasoning. <strong>NEST</strong> comprises 1,208 manually annotated clips (~12s) curated for diversity across naturalistic settings, cultural contexts, and developmental stages. Beyond a lack of data, targeted model improvement in this domain is hindered by coarse evaluation schemas that conflate basic perception with higher-order reasoning. To resolve this, <strong>NEST</strong> introduces a compositional schema that builds atomic interaction cues into progressive levels of social reasoning: contextual, behavioral, interpersonal, and open-ended descriptions. Extensive analysis of state-of-the-art Vision-Language Models (VLMs) reveals a stark performance collapse: despite strong contextual recognition, models exhibit substantial gaps in decoding precise behavioral and interpersonal cues. We trace these failures to specific biases, including poor consequence grounding and temporal sensitivity. Finally, we ground <strong>NEST</strong> in real-world applications by evaluating VLMs using domain adaptation strategies. Ultimately, <strong>NEST</strong> provides a rigorous testbed for advancing socially grounded artificial intelligence in early childhood.
-          </p>
+          <h2 class="mb-5 text-center text-2xl font-bold">Contributions</h2>
+          <ol class="space-y-4">
+            <li class="flex gap-3">
+              <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">1</span>
+              <p class="leading-relaxed text-slate-700">
+                <strong>The NEST</strong> (<strong>N</strong>aturalistic <strong>E</strong>arly-childhood <strong>S</strong>ocial in<strong>T</strong>eractions) <strong>benchmark</strong>: The first child-centric dataset for nonverbal social reasoning in close, naturalistic interactions.
+              </p>
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">2</span>
+              <p class="leading-relaxed text-slate-700">
+                <strong>A compositional schema and evaluation</strong>: A hierarchical schema over three reasoning levels (contextual, behavioral, interpersonal) plus an open description of interactions, that disentangles basic perception from higher-order social reasoning, revealing a stark performance collapse in state-of-the-art VLMs.
+              </p>
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">3</span>
+              <p class="leading-relaxed text-slate-700">
+                <strong>A comprehensive evaluation of VLM failure modes</strong>: We characterize the gaps and test their practical implications for early-childhood interventions.
+              </p>
+            </li>
+          </ol>
         </div>
 
         <!-- dataset statistics (count up on scroll) -->
@@ -290,25 +303,30 @@
         </figure>
       </div>
 
-      <!-- finding cards -->
-      <div class="grid gap-6 sm:grid-cols-3">
-        <!-- <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
-          <div class="text-sm font-bold text-slate-400">Context</div>
-          <p class="mt-1 font-medium">Models excel at contextual tasks (age, location and main activity).
-            <span class="filler text-sm font-normal">[ filler. ]</span></p>
-        </div> -->
-        <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
-          <div class="text-sm font-bold text-slate-400">Result 1</div>
-          <p class="mt-1 font-medium">Models are effective finding the object of attention but struggle with temporal grounding as events become shorter.
+      <!-- result cards (left) drive the shared figure panel (right).
+           Hover or tap a card. data-fig can be any web image: .svg / .png / .jpg
+           (PDFs must be converted first). -->
+      <div class="grid items-stretch gap-6 lg:grid-cols-3">
+        <div class="rcards space-y-3 lg:col-span-1">
+          <div class="rcard cursor-pointer rounded-xl bg-slate-50 p-4 ring-1 ring-slate-100 transition"
+               data-label="Result 1" data-fig="./figures/result1.svg?v=3">
+            <div class="text-xs font-bold text-slate-400">Result 1</div>
+            <p class="mt-1 text-sm font-medium text-slate-700">Models are effective finding the object of attention but struggle with temporal grounding as events become shorter.</p>
+          </div>
+          <div class="rcard cursor-pointer rounded-xl bg-slate-50 p-4 ring-1 ring-slate-100 transition"
+               data-label="Result 2" data-fig="./figures/result2.svg?v=2">
+            <div class="text-xs font-bold text-slate-400">Result 2</div>
+            <p class="mt-1 text-sm font-medium text-slate-700">Separating the initiator-responder for interpersonal reasoning, we find that child-child and adult-adult interactions perform worse than mixed interactions.</p>
+          </div>
+          <div class="rcard cursor-pointer rounded-xl bg-slate-50 p-4 ring-1 ring-slate-100 transition"
+               data-label="Result 3" data-fig="./figures/result3.svg?v=2">
+            <div class="text-xs font-bold text-slate-400">Result 3</div>
+            <p class="mt-1 text-sm font-medium text-slate-700">Specialist models (e.g. gaze estimation) perform on par or better than VLMs depending on the task, making them preferable based on resources.</p>
+          </div>
         </div>
-        <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
-          <div class="text-sm font-bold text-slate-400">Result 2</div>
-          <p class="mt-1 font-medium"> Separating the initiator-responder for an action reaction pair, we find that child-child and adult-adult interactions perform worse than mixed interactions.
-        </div>
-        <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
-          <div class="text-sm font-bold text-slate-400">Result 3</div>
-          <p class="mt-1 font-medium">Specialist models (e.g. gaze estimation) perform on par or better than VLMs depending on the task, making them preferable based on resources.
-        </div>
+
+        <!-- shared figure panel, driven by the hovered/selected card -->
+        <div id="resultFig" class="flex min-h-[16rem] items-center justify-center rounded-xl border border-slate-200 bg-white p-4 lg:col-span-2"></div>
       </div>
 
       <!-- full results table (expandable) -->
@@ -403,7 +421,7 @@
         contextual:   {name:'Contextual',    text:'text-ctx',   border:'border-ctx',   chip:'bg-ctx/15',   ring:'#5887B0'},
         behavioral:   {name:'Behavioral',    text:'text-beh',   border:'border-beh',   chip:'bg-beh/20',   ring:'#E0A526'},
         interpersonal:{name:'Interpersonal', text:'text-inter', border:'border-inter', chip:'bg-inter/15', ring:'#89759C'},
-        open:         {name:'Open',          text:'text-open',  border:'border-open',  chip:'bg-open/15',  ring:'#B8569B'},
+        open:         {name:'Open',          text:'text-slate-900', border:'border-slate-900', chip:'bg-slate-900/10', ring:'#111827'},
       };
       const stage=document.getElementById('clipStage');
       const caption=document.getElementById('clipCaption');
@@ -413,23 +431,36 @@
       const thumbBase='h-14 w-20 overflow-hidden rounded-md bg-slate-200 bg-cover bg-center transition';
       let regionBox=null;
 
-      function media(ex){
-        stage.innerHTML='';
-        let el;
-        if(ex.video){
-          el=document.createElement('video');
-          el.src=ex.video; if(ex.poster) el.poster=ex.poster;
-          el.controls=true; el.muted=true; el.loop=true; el.playsInline=true; el.preload='metadata';
-          el.className='block w-full';
-        }else{
-          el=document.createElement('img');
-          el.src=ex.poster; el.alt=ex.caption||ex.id; el.className='block w-full';
-        }
-        stage.appendChild(el);
+      function addRegion(){
         regionBox=document.createElement('div');
         regionBox.className='pointer-events-none absolute rounded-md opacity-0 transition-opacity duration-150';
         regionBox.style.border='3px solid #111827';
         stage.appendChild(regionBox);
+      }
+      function placeholder(text){
+        const d=document.createElement('div');
+        d.className='filler flex aspect-video w-full items-center justify-center bg-slate-100 text-sm';
+        d.textContent=text;
+        stage.appendChild(d);
+      }
+      function media(ex){
+        stage.innerHTML='';
+        if(ex.video){
+          const el=document.createElement('video');
+          el.src=ex.video; if(ex.poster) el.poster=ex.poster;
+          el.controls=true; el.muted=true; el.loop=true; el.playsInline=true; el.preload='metadata';
+          el.className='block w-full';
+          // until the clip is added, show a gentle placeholder instead of a broken player
+          el.addEventListener('error',()=>{ stage.innerHTML=''; placeholder('▶ clip coming soon — '+ex.id); addRegion(); });
+          stage.appendChild(el);
+        }else if(ex.poster){
+          const el=document.createElement('img');
+          el.src=ex.poster; el.alt=ex.caption||ex.id; el.className='block w-full';
+          stage.appendChild(el);
+        }else{
+          placeholder('▶ clip coming soon — '+ex.id);
+        }
+        addRegion();
       }
       function showRegion(r,color){
         if(!r||!regionBox) return;
@@ -440,27 +471,38 @@
       function hideRegion(){ if(regionBox) regionBox.style.opacity='0'; }
 
       function renderQA(ex){
+        // grounding legend: the per-clip person descriptions that every question references
+        parts.className='mb-4 space-y-1.5 rounded-lg bg-slate-50 p-3 ring-1 ring-slate-100';
         parts.innerHTML='';
         (ex.participants||[]).forEach(p=>{
-          const s=document.createElement('span');
-          s.className='inline-flex items-center gap-1.5 text-slate-600';
-          s.innerHTML='<span class="inline-block h-3 w-3 rounded-sm" style="background:'+p.color+'"></span>'+p.label;
-          parts.appendChild(s);
+          const row=document.createElement('div');
+          row.className='flex items-start gap-2 text-xs leading-snug';
+          row.innerHTML='<span class="mt-0.5 inline-block h-3 w-3 shrink-0 rounded-sm" style="background:'+p.color+'"></span>'
+            +'<span><span class="font-semibold text-slate-700">'+p.label+'</span>'
+            +(p.desc?' <span class="text-slate-500">— '+p.desc+'</span>':'')+'</span>';
+          parts.appendChild(row);
         });
+        // level toggle: one button per level, showing a single question card at a time
         qa.innerHTML='';
-        ex.questions.forEach(q=>{
+        const bar=document.createElement('div');
+        bar.className='mb-3 flex flex-wrap gap-2';
+        const cardWrap=document.createElement('div');
+        qa.appendChild(bar); qa.appendChild(cardWrap);
+        const btnBase='rounded-full px-3 py-1.5 text-xs font-semibold transition';
+
+        function renderCard(q){
           const lv=LV[q.level]||LV.open;
           const card=document.createElement('div');
           card.className='rounded-lg border-l-4 '+lv.border+' bg-white p-4 shadow-sm ring-1 ring-slate-100';
-          let html='<div class="text-xs font-bold uppercase tracking-wide '+lv.text+'">'+lv.name+'</div>';
-          html+='<p class="mt-1 text-sm font-medium text-slate-800">'+q.q+'</p>';
+          let html='<p class="text-sm font-medium text-slate-800">'+q.q+'</p>';
           if(q.options){
             html+='<ul class="mt-2 space-y-1">';
-            q.options.forEach(opt=>{
+            q.options.forEach((opt,idx)=>{
               const correct=(opt===q.answer);
+              const marker=correct?'✓':String.fromCharCode(65+idx);   // A, B, C… for wrong options
               html+='<li class="flex items-start gap-2 rounded px-2 py-1 text-sm '
                   +(correct?lv.chip+' font-medium text-slate-800':'text-slate-600')+'">'
-                  +'<span class="mt-px">'+(correct?'✓':'○')+'</span><span>'+opt+'</span></li>';
+                  +'<span class="mt-px inline-block w-4 shrink-0 text-center font-semibold">'+marker+'</span><span>'+opt+'</span></li>';
             });
             html+='</ul>';
           }else{
@@ -471,8 +513,25 @@
             card.addEventListener('mouseenter',()=>showRegion(q.region, lv.ring));
             card.addEventListener('mouseleave',hideRegion);
           }
-          qa.appendChild(card);
+          cardWrap.innerHTML=''; cardWrap.appendChild(card);
+        }
+        function selectLevel(level){
+          [...bar.children].forEach(b=>{
+            const on=b.dataset.level===level, lv=LV[b.dataset.level];
+            b.className=btnBase+(on?' text-white':' bg-slate-100 text-slate-600 hover:bg-slate-200');
+            b.style.background = on ? lv.ring : '';
+          });
+          renderCard(ex.questions.find(q=>q.level===level));
+        }
+        ex.questions.forEach(q=>{
+          const lv=LV[q.level]||LV.open;
+          const b=document.createElement('button');
+          b.dataset.level=q.level; b.textContent=lv.name;
+          b.className=btnBase+' bg-slate-100 text-slate-600 hover:bg-slate-200';
+          b.addEventListener('click',()=>selectLevel(q.level));
+          bar.appendChild(b);
         });
+        selectLevel(ex.questions.some(q=>q.level==='open') ? 'open' : ex.questions[0].level);
       }
       function render(i){
         const ex=EXAMPLES[i];
@@ -494,6 +553,36 @@
         });
       }
       render(0);
+    })();
+  </script>
+
+  <!-- Results: hovering/selecting a result card shows its figure in the shared panel -->
+  <script>
+    (function(){
+      const cards=document.querySelectorAll('.rcard'); if(!cards.length) return;
+      const stage=document.getElementById('resultFig'); if(!stage) return;
+      function show(card){
+        cards.forEach(c=>{
+          const on=c===card;
+          c.classList.toggle('ring-2', on);
+          c.classList.toggle('ring-slate-900', on);
+          c.classList.toggle('ring-1', !on);
+          c.classList.toggle('ring-slate-100', !on);
+        });
+        const fig=card.dataset.fig, label=card.dataset.label||'';
+        const img=new Image();
+        img.alt=label; img.className='mx-auto block max-h-80 w-auto max-w-full';
+        img.onerror=()=>{ stage.innerHTML='<span class="filler text-sm">[ '+label+' figure — drop '+fig+' ]</span>'; };
+        img.onload=()=>{ stage.innerHTML=''; stage.appendChild(img); };
+        img.src=fig;
+      }
+      cards.forEach(c=>{
+        c.setAttribute('tabindex','0');
+        c.addEventListener('mouseenter',()=>show(c));
+        c.addEventListener('click',()=>show(c));
+        c.addEventListener('focus',()=>show(c));
+      });
+      show(cards[0]);
     })();
   </script>
 

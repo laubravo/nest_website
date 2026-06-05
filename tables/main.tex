@@ -1,0 +1,111 @@
+\begin{tabular}{lcccccccccccccccc}
+  \toprule
+  \multicolumn{1}{c}{\textbf{Model}} &  & \multicolumn{4}{c}{\textbf{Contextual}} & \multicolumn{4}{c}{\textbf{Behavioral}} &
+  \multicolumn{4}{c}{\textbf{Interpersonal}} & \multicolumn{1}{c}{\textbf{All}} & \multicolumn{2}{c}{\textbf{Open Inter.}} \\
+  \cmidrule(lr){3-6} \cmidrule(lr){7-10} \cmidrule(lr){11-14} \cmidrule(lr){15-15} \cmidrule(lr){16-17}
+   & Size & \shortstack{age} & loc. & \shortstack{main\\act.} & Avg & \shortstack{object\\attn.} & \shortstack{shared\\attn.} &
+  \shortstack{event\\at t} & Avg & \shortstack{react.} & cause & conseq. & Avg & Avg & \shortstack{sim.\\(0-3)} & recall \\
+  \midrule
+  Human & -- & 87.9 & 90.6 & 67.8 & 82.1 & 88.7 & 93.2 & 95.3 & 92.4 & 79.3 & 86.1 & 94.0 & 86.5 & 87.0 & -- & -- \\
+  \midrule
+  \multicolumn{17}{l}{\textit{Open-source}} \\
+  \midrule
+  LLaVA-NeXT-Video & 7B & \cellcolor[rgb]{0.841,0.696,0.770} 44.5 & \cellcolor[rgb]{0.742,0.619,0.724} 64.7 &
+  \cellcolor[rgb]{0.832,0.687,0.766} 46.3 & \cellcolor[rgb]{0.807,0.665,0.754} 51.8 & \cellcolor[rgb]{0.809,0.667,0.756} 51.5 &
+  \cellcolor[rgb]{0.867,0.724,0.783} 37.7 & \cellcolor[rgb]{0.901,0.769,0.804} 27.5 & \cellcolor[rgb]{0.863,0.719,0.781} 38.9 &
+  \cellcolor[rgb]{0.841,0.696,0.770} 44.1 & \cellcolor[rgb]{0.852,0.707,0.776} 41.0 & \cellcolor[rgb]{0.863,0.719,0.781} 38.7 &
+  \cellcolor[rgb]{0.852,0.707,0.776} 41.3 & \cellcolor[rgb]{0.841,0.696,0.770} 44.0 & \cellcolor[rgb]{0.899,0.766,0.803} 0.8 &
+  \cellcolor[rgb]{0.949,0.866,0.860} 7.3 \\
+  LLaVA-OV & 7B & \cellcolor[rgb]{0.718,0.605,0.712} 69.4 & \cellcolor[rgb]{0.642,0.564,0.665} 82.6 & \cellcolor[rgb]{0.733,0.614,0.720}
+  66.1 & \cellcolor[rgb]{0.696,0.593,0.700} 72.7 & \cellcolor[rgb]{0.721,0.607,0.713} 68.4 & \cellcolor[rgb]{0.814,0.672,0.758} 50.2 &
+  \cellcolor[rgb]{0.863,0.719,0.781} 38.4 & \cellcolor[rgb]{0.804,0.663,0.753} 52.3 & \cellcolor[rgb]{0.684,0.586,0.692} \underline{75.3} &
+   \cellcolor[rgb]{0.814,0.672,0.758} 50.2 & \cellcolor[rgb]{0.875,0.734,0.788} 35.3 & \cellcolor[rgb]{0.799,0.659,0.751} 53.6 &
+  \cellcolor[rgb]{0.769,0.637,0.737} 59.6 & \cellcolor[rgb]{0.881,0.741,0.791} 1.0 & \cellcolor[rgb]{0.935,0.833,0.839} 14.1 \\
+  openPangu-VL & 7B & \cellcolor[rgb]{0.757,0.629,0.732} 61.8 & \cellcolor[rgb]{0.623,0.555,0.652} 85.8 &
+  \cellcolor[rgb]{0.721,0.607,0.713} 68.7 & \cellcolor[rgb]{0.703,0.596,0.703} 72.1 & \cellcolor[rgb]{0.671,0.579,0.684} 77.5 &
+  \cellcolor[rgb]{0.822,0.678,0.761} 48.8 & \cellcolor[rgb]{0.799,0.659,0.751} 53.8 & \cellcolor[rgb]{0.769,0.637,0.737} 60.0 &
+  \cellcolor[rgb]{0.727,0.610,0.717} 67.9 & \cellcolor[rgb]{0.802,0.661,0.752} 53.4 & \cellcolor[rgb]{0.802,0.661,0.752} 52.8 &
+  \cellcolor[rgb]{0.777,0.643,0.741} 58.1 & \cellcolor[rgb]{0.748,0.623,0.727} 63.4 & \cellcolor[rgb]{0.910,0.785,0.812} 0.7 &
+  \cellcolor[rgb]{0.947,0.860,0.857} 8.2 \\
+  InternVL3.5 & 4B & \cellcolor[rgb]{0.910,0.785,0.812} 24.2 & \cellcolor[rgb]{0.724,0.608,0.715} 68.2 & \cellcolor[rgb]{0.832,0.687,0.766}
+   46.4 & \cellcolor[rgb]{0.832,0.687,0.766} 46.3 & \cellcolor[rgb]{0.736,0.616,0.721} 65.7 & \cellcolor[rgb]{0.896,0.761,0.800} 29.2 &
+  \cellcolor[rgb]{0.913,0.790,0.814} 23.0 & \cellcolor[rgb]{0.861,0.717,0.780} 39.3 & \cellcolor[rgb]{0.841,0.696,0.770} 44.0 &
+  \cellcolor[rgb]{0.857,0.712,0.778} 40.2 & \cellcolor[rgb]{0.871,0.729,0.785} 36.2 & \cellcolor[rgb]{0.857,0.712,0.778} 40.1 &
+  \cellcolor[rgb]{0.850,0.705,0.775} 41.9 & \cellcolor[rgb]{0.896,0.761,0.800} 0.9 & \cellcolor[rgb]{0.945,0.855,0.853} 10.0 \\
+  InternVL3.5 & 8B & \cellcolor[rgb]{0.887,0.749,0.794} 31.9 & \cellcolor[rgb]{0.696,0.593,0.700} 72.9 & \cellcolor[rgb]{0.809,0.667,0.756}
+   51.3 & \cellcolor[rgb]{0.807,0.665,0.754} 52.0 & \cellcolor[rgb]{0.754,0.627,0.730} 62.3 & \cellcolor[rgb]{0.829,0.685,0.765} 46.9 &
+  \cellcolor[rgb]{0.904,0.774,0.807} 26.4 & \cellcolor[rgb]{0.837,0.691,0.768} 45.2 & \cellcolor[rgb]{0.871,0.729,0.785} 36.1 &
+  \cellcolor[rgb]{0.829,0.685,0.765} 46.6 & \cellcolor[rgb]{0.857,0.712,0.778} 40.5 & \cellcolor[rgb]{0.852,0.707,0.776} 41.1 &
+  \cellcolor[rgb]{0.832,0.687,0.766} 46.1 & \cellcolor[rgb]{0.890,0.754,0.797} 0.9 & \cellcolor[rgb]{0.942,0.849,0.849} 10.9 \\
+  InternVL3.5 & 38B & \cellcolor[rgb]{0.814,0.672,0.758} 50.2 & \cellcolor[rgb]{0.652,0.569,0.672} 80.7 &
+  \cellcolor[rgb]{0.739,0.618,0.723} 65.1 & \cellcolor[rgb]{0.739,0.618,0.723} 65.4 & \cellcolor[rgb]{0.703,0.596,0.703} 72.0 &
+  \cellcolor[rgb]{0.796,0.657,0.750} 54.2 & \cellcolor[rgb]{0.850,0.705,0.775} 42.1 & \cellcolor[rgb]{0.788,0.651,0.746} 56.1 &
+  \cellcolor[rgb]{0.829,0.685,0.765} 46.5 & \cellcolor[rgb]{0.769,0.637,0.737} 59.5 & \cellcolor[rgb]{0.829,0.685,0.765} 46.5 &
+  \cellcolor[rgb]{0.812,0.669,0.757} 50.9 & \cellcolor[rgb]{0.780,0.645,0.742} 57.4 & \cellcolor[rgb]{0.910,0.785,0.812} 0.7 &
+  \cellcolor[rgb]{0.949,0.866,0.860} 7.7 \\
+  MiniCPM-V 4.5 & 8B & \cellcolor[rgb]{0.658,0.572,0.676} 80.0 & \cellcolor[rgb]{0.592,0.539,0.626} 91.5 &
+  \cellcolor[rgb]{0.677,0.582,0.688} 76.4 & \cellcolor[rgb]{0.642,0.564,0.665} 82.6 & \cellcolor[rgb]{0.655,0.571,0.674} 80.3 &
+  \cellcolor[rgb]{0.785,0.649,0.745} 56.4 & \cellcolor[rgb]{0.809,0.667,0.756} 51.2 & \cellcolor[rgb]{0.754,0.627,0.730} 62.6 &
+  \cellcolor[rgb]{0.760,0.631,0.733} 61.5 & \cellcolor[rgb]{0.760,0.631,0.733} 61.7 & \cellcolor[rgb]{0.817,0.674,0.759} 49.9 &
+  \cellcolor[rgb]{0.780,0.645,0.742} 57.7 & \cellcolor[rgb]{0.727,0.610,0.717} 67.6 & \cellcolor[rgb]{0.881,0.741,0.791} 1.0 &
+  \cellcolor[rgb]{0.940,0.844,0.845} 11.8 \\
+  Molmo2 & 8B & \cellcolor[rgb]{0.671,0.579,0.684} 77.7 & \cellcolor[rgb]{0.608,0.547,0.639} 88.9 & \cellcolor[rgb]{0.674,0.581,0.686} 77.1
+   & \cellcolor[rgb]{0.652,0.569,0.672} 81.2 & \cellcolor[rgb]{0.646,0.566,0.668} 81.7 & \cellcolor[rgb]{0.774,0.641,0.740} 58.9 &
+  \cellcolor[rgb]{0.769,0.637,0.737} 60.0 & \cellcolor[rgb]{0.730,0.612,0.718} 66.9 & \cellcolor[rgb]{0.763,0.633,0.734} 60.7 &
+  \cellcolor[rgb]{0.757,0.629,0.732} 61.8 & \cellcolor[rgb]{0.771,0.639,0.738} \underline{59.3} & \cellcolor[rgb]{0.763,0.633,0.734} 60.6 &
+   \cellcolor[rgb]{0.715,0.603,0.710} 69.6 & \cellcolor[rgb]{0.885,0.746,0.793} 1.0 & \cellcolor[rgb]{0.935,0.833,0.839} 14.3 \\
+  Keye-VL 1.5 & 8B & \cellcolor[rgb]{0.829,0.685,0.765} 47.2 & \cellcolor[rgb]{0.642,0.564,0.665} 82.5 & \cellcolor[rgb]{0.804,0.663,0.753}
+   52.6 & \cellcolor[rgb]{0.763,0.633,0.734} 60.8 & \cellcolor[rgb]{0.754,0.627,0.730} 62.5 & \cellcolor[rgb]{0.788,0.651,0.746} 56.2 &
+  \cellcolor[rgb]{0.902,0.771,0.805} 27.3 & \cellcolor[rgb]{0.822,0.678,0.761} 48.7 & \cellcolor[rgb]{0.703,0.596,0.703} 72.2 &
+  \cellcolor[rgb]{0.802,0.661,0.752} 52.8 & \cellcolor[rgb]{0.859,0.714,0.779} 39.7 & \cellcolor[rgb]{0.794,0.655,0.749} 54.9 &
+  \cellcolor[rgb]{0.794,0.655,0.749} 54.8 & \cellcolor[rgb]{0.852,0.707,0.776} \textbf{1.3} & \cellcolor[rgb]{0.928,0.816,0.829} 17.3 \\
+  Qwen3-VL & 4B & \cellcolor[rgb]{0.890,0.754,0.797} 31.0 & \cellcolor[rgb]{0.696,0.593,0.700} 73.2 & \cellcolor[rgb]{0.754,0.627,0.730}
+  62.2 & \cellcolor[rgb]{0.788,0.651,0.746} 55.5 & \cellcolor[rgb]{0.721,0.607,0.713} 68.6 & \cellcolor[rgb]{0.814,0.672,0.758} 50.4 &
+  \cellcolor[rgb]{0.848,0.703,0.773} 42.3 & \cellcolor[rgb]{0.799,0.659,0.751} 53.8 & \cellcolor[rgb]{0.718,0.605,0.712} 68.9 &
+  \cellcolor[rgb]{0.794,0.655,0.749} 54.6 & \cellcolor[rgb]{0.822,0.678,0.761} 48.6 & \cellcolor[rgb]{0.780,0.645,0.742} 57.4 &
+  \cellcolor[rgb]{0.788,0.651,0.746} 55.5 & \cellcolor[rgb]{0.863,0.719,0.781} 1.2 & \cellcolor[rgb]{0.928,0.816,0.829} 17.4 \\
+  Qwen3-VL & 8B & \cellcolor[rgb]{0.794,0.655,0.749} 54.7 & \cellcolor[rgb]{0.642,0.564,0.665} 82.5 & \cellcolor[rgb]{0.739,0.618,0.723}
+  64.9 & \cellcolor[rgb]{0.727,0.610,0.717} 67.4 & \cellcolor[rgb]{0.693,0.591,0.698} 73.6 & \cellcolor[rgb]{0.780,0.645,0.742} 57.4 &
+  \cellcolor[rgb]{0.807,0.665,0.754} 51.9 & \cellcolor[rgb]{0.760,0.631,0.733} 60.9 & \cellcolor[rgb]{0.852,0.707,0.776} 41.6 &
+  \cellcolor[rgb]{0.794,0.655,0.749} 54.6 & \cellcolor[rgb]{0.812,0.669,0.757} 51.0 & \cellcolor[rgb]{0.820,0.676,0.760} 49.1 &
+  \cellcolor[rgb]{0.771,0.639,0.738} 59.1 & \cellcolor[rgb]{0.850,0.705,0.775} \textbf{1.3} & \cellcolor[rgb]{0.924,0.808,0.824} 19.1 \\
+  Qwen3-VL & 32B & \cellcolor[rgb]{0.709,0.600,0.707} 70.8 & \cellcolor[rgb]{0.620,0.553,0.649} 86.3 & \cellcolor[rgb]{0.690,0.589,0.696}
+  74.3 & \cellcolor[rgb]{0.674,0.581,0.686} 77.1 & \cellcolor[rgb]{0.655,0.571,0.674} 80.3 & \cellcolor[rgb]{0.788,0.651,0.746} 55.8 &
+  \cellcolor[rgb]{0.760,0.631,0.733} 61.2 & \cellcolor[rgb]{0.736,0.616,0.721} 65.8 & \cellcolor[rgb]{0.829,0.685,0.765} 46.9 &
+  \cellcolor[rgb]{0.730,0.612,0.718} 67.1 & \cellcolor[rgb]{0.791,0.653,0.747} 55.3 & \cellcolor[rgb]{0.785,0.649,0.745} 56.4 &
+  \cellcolor[rgb]{0.733,0.614,0.720} 66.4 & \cellcolor[rgb]{0.892,0.756,0.798} 0.9 & \cellcolor[rgb]{0.918,0.798,0.819} 21.2 \\
+  Qwen3.5 & 4B & \cellcolor[rgb]{0.627,0.556,0.654} 85.5 & \cellcolor[rgb]{0.586,0.536,0.621} \underline{92.9} &
+  \cellcolor[rgb]{0.668,0.577,0.682} 78.2 & \cellcolor[rgb]{0.627,0.556,0.654} \underline{85.5} & \cellcolor[rgb]{0.627,0.556,0.654} 85.4 &
+   \cellcolor[rgb]{0.788,0.651,0.746} 56.0 & \cellcolor[rgb]{0.760,0.631,0.733} 61.5 & \cellcolor[rgb]{0.727,0.610,0.717} 67.6 &
+  \cellcolor[rgb]{0.791,0.653,0.747} 55.4 & \cellcolor[rgb]{0.736,0.616,0.721} 65.8 & \cellcolor[rgb]{0.829,0.685,0.765} 47.1 &
+  \cellcolor[rgb]{0.788,0.651,0.746} 56.1 & \cellcolor[rgb]{0.715,0.603,0.710} 69.7 & \cellcolor[rgb]{0.883,0.744,0.792} 1.0 &
+  \cellcolor[rgb]{0.945,0.855,0.853} 9.9 \\
+  Qwen3.5 & 9B & \cellcolor[rgb]{0.623,0.555,0.652} 85.8 & \cellcolor[rgb]{0.586,0.536,0.621} 92.2 & \cellcolor[rgb]{0.671,0.579,0.684}
+  77.7 & \cellcolor[rgb]{0.627,0.556,0.654} 85.2 & \cellcolor[rgb]{0.623,0.555,0.652} \underline{85.8} & \cellcolor[rgb]{0.763,0.633,0.734}
+   60.6 & \cellcolor[rgb]{0.760,0.631,0.733} 61.7 & \cellcolor[rgb]{0.718,0.605,0.712} \underline{69.4} &
+  \cellcolor[rgb]{0.681,0.584,0.690} \textbf{75.6} & \cellcolor[rgb]{0.715,0.603,0.710} 69.7 & \cellcolor[rgb]{0.788,0.651,0.746} 55.6 &
+  \cellcolor[rgb]{0.730,0.612,0.718} \underline{67.0} & \cellcolor[rgb]{0.690,0.589,0.696} \underline{73.9} &
+  \cellcolor[rgb]{0.877,0.736,0.789} 1.0 & \cellcolor[rgb]{0.942,0.849,0.849} 10.8 \\
+  Qwen3.5 & 27B & \cellcolor[rgb]{0.614,0.550,0.644} \textbf{87.3} & \cellcolor[rgb]{0.573,0.529,0.610} \textbf{94.9} &
+  \cellcolor[rgb]{0.636,0.561,0.661} \textbf{83.4} & \cellcolor[rgb]{0.608,0.547,0.639} \textbf{88.5} & \cellcolor[rgb]{0.592,0.539,0.626}
+  \textbf{91.7} & \cellcolor[rgb]{0.757,0.629,0.732} \textbf{62.0} & \cellcolor[rgb]{0.727,0.610,0.717} \textbf{67.3} &
+  \cellcolor[rgb]{0.693,0.591,0.698} \textbf{73.7} & \cellcolor[rgb]{0.754,0.627,0.730} 62.4 & \cellcolor[rgb]{0.674,0.581,0.686}
+  \textbf{76.7} & \cellcolor[rgb]{0.774,0.641,0.740} 58.3 & \cellcolor[rgb]{0.736,0.616,0.721} 65.8 & \cellcolor[rgb]{0.681,0.584,0.690}
+  \textbf{76.0} & \cellcolor[rgb]{0.850,0.705,0.775} \textbf{1.3} & \cellcolor[rgb]{0.916,0.795,0.817} \underline{21.9} \\
+  \midrule
+  \multicolumn{17}{l}{\textit{Closed-source (API)}} \\
+  \midrule
+  Gemini 3.1 Flash Lite & -- & \cellcolor[rgb]{0.620,0.553,0.649} 86.5 & \cellcolor[rgb]{0.620,0.553,0.649} 86.1 &
+  \cellcolor[rgb]{0.674,0.581,0.686} 76.9 & \cellcolor[rgb]{0.639,0.563,0.663} 83.2 & \cellcolor[rgb]{0.630,0.558,0.656} 84.6 &
+  \cellcolor[rgb]{0.757,0.629,0.732} \textbf{62.0} & \cellcolor[rgb]{0.760,0.631,0.733} 61.5 & \cellcolor[rgb]{0.718,0.605,0.712}
+  \underline{69.4} & \cellcolor[rgb]{0.848,0.703,0.773} 42.5 & \cellcolor[rgb]{0.703,0.596,0.703} \underline{72.3} &
+  \cellcolor[rgb]{0.794,0.655,0.749} 54.8 & \cellcolor[rgb]{0.785,0.649,0.745} 56.5 & \cellcolor[rgb]{0.715,0.603,0.710} 69.7 &
+  \cellcolor[rgb]{0.867,0.724,0.783} 1.1 & \cellcolor[rgb]{0.929,0.819,0.831} 17.1 \\
+  GPT-5 mini & -- & \cellcolor[rgb]{0.617,0.551,0.647} \underline{86.9} & \cellcolor[rgb]{0.655,0.571,0.674} 80.4 &
+  \cellcolor[rgb]{0.655,0.571,0.674} \underline{80.4} & \cellcolor[rgb]{0.642,0.564,0.665} 82.6 & \cellcolor[rgb]{0.633,0.559,0.659} 84.0 &
+   \cellcolor[rgb]{0.763,0.633,0.734} 60.7 & \cellcolor[rgb]{0.751,0.625,0.729} \underline{63.0} & \cellcolor[rgb]{0.718,0.605,0.712} 69.3
+  & \cellcolor[rgb]{0.684,0.586,0.692} 75.2 & \cellcolor[rgb]{0.712,0.601,0.708} 70.5 & \cellcolor[rgb]{0.769,0.637,0.737} \textbf{59.6} &
+  \cellcolor[rgb]{0.721,0.607,0.713} \textbf{68.4} & \cellcolor[rgb]{0.696,0.593,0.700} 73.4 & \cellcolor[rgb]{0.861,0.717,0.780} 1.2 &
+  \cellcolor[rgb]{0.902,0.771,0.805} \textbf{27.1} \\
+  \bottomrule
+  \end{tabular}
