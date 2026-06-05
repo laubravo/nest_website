@@ -1,50 +1,74 @@
 /* ──────────────────────────────────────────────────────────────────────────
-   NEST — question-viewer data
-   Add one object per example clip. Loaded via <script src="./data.js"> so it
-   works even when opening index.html directly (file://) — unlike fetch().
+   NEST — "Explore the benchmark" data
+   One object per example clip. Loaded via <script src="./data.js"> so it works
+   when opening index.html directly (file://) — unlike fetch().
 
-   Each `region` is a box in PERCENT of the media area {x, y, w, h}, so it
-   scales with the image. Omit `region` for questions with no specific area.
+   Question levels:
+     • contextual / behavioral / interpersonal  → MULTIPLE CHOICE
+         provide `options: [...]` and `answer:` (must equal one of the options)
+     • open                                      → FREE TEXT
+         provide `a:` (the reference description); no options
+
+   Optional per question: `region: {x,y,w,h}` in PERCENT of the media area —
+   highlighted on the media when you hover that question card.
+
+   NOTE: the two examples below are PLACEHOLDERS so the viewer renders. They get
+   replaced by the real dataframe + cleared clips.
    ────────────────────────────────────────────────────────────────────────── */
 const EXAMPLES = [
   {
-    id: "cup",
-    // No cleared clip dropped in yet → falls back to this poster image.
-    // When ready: video: "./videos/cup.mp4",
-    video: null,
-    poster: "./figures/interactive_frames/frame2.jpg",
-    caption: "Adult–child interaction at a table (placeholder still — swap for cleared clip).",
+    id: "library",
+    video: "./figures/graphical_abstract/nest_eg_h264.mp4",
+    poster: "./figures/pull_clip_poster.jpg",
+    caption: "Two toddlers and an adult in a library (placeholder example).",
     participants: [
-      { label: "child", color: "var(--blue-d)" },
-      { label: "adult", color: "var(--purple-d)" },
+      { label: "person red",   color: "#ef4444" },
+      { label: "person green", color: "#22c55e" },
     ],
     questions: [
-      { level: "contextual",    q: "Where are they?",
-        a: "Indoors, sitting around a table.",
-        region: { x: 2, y: 2, w: 96, h: 28 } },
-      { level: "behavioral",    q: "What is the child doing?",
-        a: "Pointing at the glass cup on the tray.",
-        region: { x: 32, y: 40, w: 30, h: 45 } },
-      { level: "interpersonal", q: "How does the adult respond to the point?",
-        a: "Looks surprised, then reaches for the cup.",
-        region: { x: 2, y: 25, w: 32, h: 65 } },
-      { level: "open",          q: "Describe the whole interaction.",
-        a: "The child points at the glass cup; the adult notices, looks surprised, and grabs it for them." },
+      { level: "contextual",
+        q: "Where are person red and green?",
+        options: ["In a library", "In a kitchen", "On a playground", "In a car"],
+        answer: "In a library" },
+      { level: "behavioral",
+        q: "What does person red do?",
+        options: ["Points at person green’s book", "Claps their hands", "Reads a book", "Waves goodbye"],
+        answer: "Points at person green’s book" },
+      { level: "interpersonal",
+        q: "How does person green respond?",
+        options: ["Frowns and pushes red", "Smiles and hugs red", "Ignores red", "Offers the book"],
+        answer: "Frowns and pushes red" },
+      { level: "open",
+        q: "Describe the whole interaction.",
+        a: "Person red and green are in a library. Person red points to person green’s book; person green frowns and pushes red. An adult comes over to intervene." },
     ],
   },
 
-  // ── template — copy this block per new clip ──────────────────────────────
-  // {
-  //   id: "clip2",
-  //   video: "./videos/clip2.mp4",
-  //   poster: "./figures/clip2-poster.jpg",
-  //   caption: "…",
-  //   participants: [{ label: "red", color: "var(--blue-d)" }],
-  //   questions: [
-  //     { level: "contextual",    q: "…", a: "…", region: { x: 0, y: 0, w: 100, h: 100 } },
-  //     { level: "behavioral",    q: "…", a: "…" },
-  //     { level: "interpersonal", q: "…", a: "…" },
-  //     { level: "open",          q: "…", a: "…" },
-  //   ],
-  // },
+  {
+    id: "cup",
+    video: null,                                   // no cleared clip yet → poster fallback
+    poster: "./figures/interactive_frames/frame2.jpg",
+    caption: "Adult–child interaction at a table (placeholder still).",
+    participants: [
+      { label: "child", color: "#5887B0" },
+      { label: "adult", color: "#89759C" },
+    ],
+    questions: [
+      { level: "contextual",
+        q: "Where are they?",
+        options: ["At a table indoors", "Outside in a yard", "In a swimming pool", "In a car"],
+        answer: "At a table indoors" },
+      { level: "behavioral",
+        q: "What is the child doing?",
+        options: ["Pointing at the glass cup", "Drinking from a bottle", "Clapping", "Sleeping"],
+        answer: "Pointing at the glass cup" },
+      { level: "interpersonal",
+        q: "How does the adult respond to the point?",
+        options: ["Looks surprised, then grabs the cup", "Walks away", "Laughs out loud", "Does nothing"],
+        answer: "Looks surprised, then grabs the cup" },
+      { level: "open",
+        q: "Describe the whole interaction.",
+        a: "The child points at the glass cup; the adult notices, looks surprised, and grabs it for them." },
+    ],
+  },
 ];

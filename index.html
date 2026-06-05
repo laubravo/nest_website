@@ -3,11 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NEST — Preview</title>
-  <meta name="description" content="NEST: Evaluating Nonverbal Social Reasoning in Early Childhood (layout preview)." />
-  <!-- NOTE: this is a no-build static PREVIEW using the Tailwind CDN so you can
-       see the layout without a working node/vite toolchain. The real site will
-       be Vite + React + Tailwind with these same sections as components. -->
+  <title>NEST — Nonverbal Social Reasoning in Early Childhood</title>
+  <meta name="description" content="NEST: the first child-centric video benchmark for evaluating nonverbal social reasoning in early childhood." />
+  <!-- No-build static site: Tailwind via CDN, no framework. -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital@0;1&display=swap" rel="stylesheet" />
@@ -20,11 +18,11 @@
             serif: ['Newsreader', 'Georgia', 'serif'],
           },
           colors: {
-            // one accent per NEST schema level
-            ctx: '#2f9e7f',   // contextual
-            beh: '#e0a526',   // behavioral
-            inter: '#b8569b', // interpersonal
-            open: '#5b8def',  // open description
+            // one accent per NEST schema level — matched to the paper/hierarchy figure
+            ctx: '#5887B0',   // contextual   (blue)
+            beh: '#E0A526',   // behavioral   (gold)
+            inter: '#89759C', // interpersonal (purple)
+            open: '#B8569B',  // open description (magenta)
           },
         },
       },
@@ -33,6 +31,17 @@
   <style>
     html { scroll-behavior: smooth; }
     .filler { color: #94a3b8; } /* tag obvious placeholder copy */
+
+    /* graphical abstract: figure pieces + live video, matched heights */
+    .gabs-top  { display:block; width:70%; height:auto; margin:0 auto; } /* smaller label band, like the figure */
+    .gabs-row  { display:grid; gap:14px; align-items:center; margin-top:10px;
+                 /* column widths ∝ aspect ratios (video 16:9, side 1.40:1) → equal heights */
+                 grid-template-columns: 1.78fr 1.40fr; }
+    .gabs-video{ display:block; width:100%; height:auto; border-radius:12px; background:#eef2f7; }
+    .gabs-side { display:block; width:100%; height:auto; }
+    @media (max-width: 640px){
+      .gabs-row{ grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
@@ -43,10 +52,12 @@
     <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3 text-sm">
       <a href="#top" class="font-bold tracking-tight">NEST</a>
       <div class="hidden gap-6 sm:flex">
-        <a href="#overview" class="hover:text-slate-950">Overview</a>
+        <a href="#abstract" class="hover:text-slate-950">Abstract</a>
+        <a href="#schema" class="hover:text-slate-950">Schema</a>
         <a href="#explore" class="hover:text-slate-950">Explore</a>
-        <a href="#findings" class="hover:text-slate-950">Findings</a>
+        <a href="#why" class="hover:text-slate-950">Why NEST</a>
         <a href="#results" class="hover:text-slate-950">Results</a>
+        <a href="#data" class="hover:text-slate-950">Data</a>
         <a href="#bibtex" class="hover:text-slate-950">BibTeX</a>
       </div>
     </nav>
@@ -55,10 +66,10 @@
   <main id="top">
 
     <!-- ╔════════════════════════════ HERO ════════════════════════════╗ -->
-    <section class="mx-auto max-w-4xl px-6 pt-16 pb-10 text-center">
-      <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-slate-400">NeurIPS 2026 · Datasets &amp; Benchmarks <span class="filler">(confirm track)</span></p>
+    <section class="mx-auto max-w-4xl px-6 pt-16 pb-12 text-center">
+      <!-- venue intentionally left empty — paper is under review -->
       <h1 class="font-serif text-4xl italic leading-tight text-slate-900 sm:text-5xl">
-        Before Words, Beyond Speech
+        Before Words, Beyond Speech:
       </h1>
       <h2 class="mx-auto mt-3 max-w-2xl text-xl font-semibold text-slate-700 sm:text-2xl">
         Evaluating Nonverbal Social Reasoning in Early Childhood
@@ -67,7 +78,7 @@
       <!-- authors -->
       <div class="mt-6 text-lg text-slate-700">
         <a class="hover:underline" href="#">Marie Amale Huynh</a><sup>*</sup>,
-        <a class="hover:underline" href="#">Laura Bravo-Sánchez</a><sup>*</sup>,
+        <a class="hover:underline" href="#">Laura Bravo-Sánchez</a><sup>*</sup>,<br />
         <a class="hover:underline" href="#">Lauren Klein</a>,
         <a class="hover:underline" href="#">Nick Haber</a>,
         <a class="hover:underline" href="#">Philip Fisher</a>,
@@ -76,137 +87,219 @@
       <div class="mt-1 text-slate-500">Stanford University</div>
       <div class="mt-1 text-sm text-slate-400"><sup>*</sup> Equal contribution</div>
 
-      <!-- link buttons -->
+      <!-- ┌──────────────────────────────────────────────────────────────┐
+           │ LINK BUTTONS — to update, edit the href="..." on each <a>.    │
+           │ • Paper:  currently commented out (under review). Un-comment   │
+           │   the block below and set its href when the PDF is public.     │
+           │ • arXiv / Code / Data: replace the "#" with the real URL.      │
+           └──────────────────────────────────────────────────────────────┘ -->
       <div class="mt-7 flex flex-wrap justify-center gap-3">
-        <a href="#" class="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700">📄 Paper</a>
-        <a href="#" class="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700">📚 arXiv</a>
-        <a href="#" class="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700">💻 Code</a>
-        <a href="#" class="rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700">🤗 Data</a>
-      </div>
-      <p class="filler mt-3 text-xs">(link URLs are placeholders)</p>
-
-      <!-- teaser figure placeholder -->
-      <div class="mt-10 flex aspect-[16/7] w-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50">
-        <span class="filler text-sm">[ teaser figure — NEST overview / schema diagram ]</span>
+        <!-- Paper (hidden until public):
+        <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">📄 Paper</a>
+        -->
+        <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">📚 arXiv</a>
+        <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">💻 Code</a>
+        <a href="#" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">🤗 Data</a>
       </div>
     </section>
 
-    <!-- ╔══════════════════════════ ABSTRACT ══════════════════════════╗ -->
-    <section class="border-y border-slate-100 bg-slate-50/60">
-      <div class="mx-auto max-w-3xl px-6 py-14">
-        <h2 class="mb-4 text-center text-2xl font-bold">Abstract</h2>
-        <p class="text-justify leading-relaxed text-slate-700">
-          Children's earliest years are a period of intense social learning, during which meaning is
-          built through gaze, gesture, and physical contact. Yet this critical aspect of social
-          interaction remains under-evaluated in multimodal video understanding. We introduce
-          <strong>NEST</strong> (Naturalistic Early-childhood Social inTeractions), the first child-centric
-          benchmark for nonverbal social reasoning — 1,208 manually annotated clips (~12s) with 14,025
-          structured questions, organized by a compositional schema spanning contextual, behavioral,
-          interpersonal, and open-ended reasoning.
-          <span class="filler">[ filler — replace with the final abstract verbatim from the paper. ]</span>
-        </p>
-        <div class="mt-8 grid grid-cols-2 gap-4 text-center sm:grid-cols-4">
-          <div class="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-100"><div class="text-2xl font-bold">1,208</div><div class="text-xs text-slate-500">clips (~12s)</div></div>
-          <div class="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-100"><div class="text-2xl font-bold">14,025</div><div class="text-xs text-slate-500">questions</div></div>
-          <div class="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-100"><div class="text-2xl font-bold">4</div><div class="text-xs text-slate-500">reasoning levels</div></div>
-          <div class="rounded-lg bg-white p-4 shadow-sm ring-1 ring-slate-100"><div class="text-2xl font-bold">child</div><div class="text-xs text-slate-500">-centric, nonverbal</div></div>
+    <!-- ╔══════════ EXPLAINER + GRAPHICAL ABSTRACT + STATS ══════════╗ -->
+    <section id="abstract" class="border-y border-slate-100 bg-slate-50/60">
+      <div class="mx-auto max-w-5xl px-6 py-14">
+
+        <!-- first-level explainer: what the paper is about (plain language) -->
+        <!-- <p class="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-slate-700">
+          Long before they can speak, children communicate through gaze, gesture, and touch. <strong>NEST</strong>
+          is the first benchmark for testing whether AI models can reason about this nonverbal social behavior,
+          using naturalistic videos of early-childhood interactions and a hierarchy of questions that build from
+          basic context up to open-ended social understanding.
+          <span class="filler">[ explainer — adjust wording. ]</span>
+        </p> -->
+
+        <!-- ╔═══════ GRAPHICAL ABSTRACT ═══════╗
+             Built from the exported figure pieces in figures/graphical_abstract/:
+             • pull_top.svg  — the "VLM → Social interaction reasoning" label (full width)
+             • the video clip — sits in the gap on the left
+             • pull_side.svg — the Q/A + NEST badge panel (right)
+             Replace any piece by re-exporting the SVG; the video is overlaid live. -->
+        <figure class="mx-auto mb-12 max-w-4xl">
+          <div class="gabs">
+            <!-- top label spans the full width -->
+            <img src="./figures/graphical_abstract/pull_top.svg" alt="VLM → social interaction reasoning"
+                 class="gabs-top" />
+
+            <!-- row: live clip (left) + Q/A panel (right) -->
+            <div class="gabs-row">
+              <video class="gabs-video" autoplay muted loop playsinline controls preload="metadata">
+                <source src="./figures/graphical_abstract/nest_eg_h264.mp4" type="video/mp4" />
+              </video>
+              <img src="./figures/graphical_abstract/pull_side.svg" alt="Question and answer, NEST benchmark"
+                   class="gabs-side" />
+            </div>
+          </div>
+        </figure>
+
+        <!-- formal abstract -->
+        <div class="mx-auto max-w-3xl">
+          <h2 class="mb-4 text-center text-2xl font-bold">Abstract</h2>
+          <p class="text-justify leading-relaxed text-slate-700">
+            Children's earliest years are a period of intense social learning, during which meaning is built through gaze, gesture, and physical contact. Yet, this critical aspect of social interaction remains under-evaluated in multimodal video understanding, as existing benchmarks prioritize the conversation-driven interactions of adults. We address this gap with <strong>NEST</strong> (<strong>N</strong>aturalistic <strong>E</strong>arly-childhood <strong>S</strong>ocial in<strong>T</strong>eractions), the first child-centric benchmark for nonverbal social reasoning. <strong>NEST</strong> comprises 1,208 manually annotated clips (~12s) curated for diversity across naturalistic settings, cultural contexts, and developmental stages. Beyond a lack of data, targeted model improvement in this domain is hindered by coarse evaluation schemas that conflate basic perception with higher-order reasoning. To resolve this, <strong>NEST</strong> introduces a compositional schema that builds atomic interaction cues into progressive levels of social reasoning: contextual, behavioral, interpersonal, and open-ended descriptions. Extensive analysis of state-of-the-art Vision-Language Models (VLMs) reveals a stark performance collapse: despite strong contextual recognition, models exhibit substantial gaps in decoding precise behavioral and interpersonal cues. We trace these failures to specific biases, including poor consequence grounding and temporal sensitivity. Finally, we ground <strong>NEST</strong> in real-world applications by evaluating VLMs using domain adaptation strategies. Ultimately, <strong>NEST</strong> provides a rigorous testbed for advancing socially grounded artificial intelligence in early childhood.
+          </p>
+        </div>
+
+        <!-- dataset statistics (count up on scroll) -->
+        <div id="stats" class="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-4 text-center sm:grid-cols-4">
+          <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <div class="mx-auto mb-3 h-1 w-8 rounded-full bg-ctx"></div>
+            <div class="stat text-3xl font-bold text-slate-900" data-to="1208" data-comma="1">0</div>
+            <div class="mt-1 text-xs text-slate-500">annotated clips</div>
+          </div>
+          <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <div class="mx-auto mb-3 h-1 w-8 rounded-full bg-beh"></div>
+            <div class="stat text-3xl font-bold text-slate-900" data-to="14025" data-comma="1">0</div>
+            <div class="mt-1 text-xs text-slate-500">structured questions</div>
+          </div>
+          <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <div class="mx-auto mb-3 h-1 w-8 rounded-full bg-inter"></div>
+            <div class="stat text-3xl font-bold text-slate-900" data-to="4">0</div>
+            <div class="mt-1 text-xs text-slate-500">reasoning levels</div>
+          </div>
+          <div class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <div class="mx-auto mb-3 h-1 w-8 rounded-full bg-open"></div>
+            <div class="stat text-3xl font-bold text-slate-900" data-to="96" data-prefix="" data-suffix="+">0</div>
+            <div class="mt-1 text-xs text-slate-500">participants</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ╔══════════════════════════ OVERVIEW ══════════════════════════╗ -->
-    <section id="overview" class="mx-auto max-w-6xl px-6 py-16">
-      <h2 class="mb-2 text-center text-2xl font-bold">The NEST schema</h2>
-      <p class="mx-auto mb-8 max-w-2xl text-center text-slate-600">
-        A single interaction decomposes into progressive levels of social reasoning — contextual,
-        behavioral, interpersonal, and an open-ended description.
-        <span class="filler">[ filler intro — replace with Fig. 1 / Fig. 2 explanation. ]</span>
+    <!-- ╔═══════ §3  SCHEMA + EXPLORE ═══════╗
+         "How to structure nonverbal social interactions?"
+         Two parts under one section: (a) the NEST schema interactive,
+         (b) Explore the benchmark (clip + hierarchical QA). -->
+    <section id="schema" class="mx-auto max-w-6xl px-6 py-16">
+      <h2 class="mb-2 text-center text-2xl font-bold">How to structure nonverbal social interactions?</h2>
+      <p class="mx-auto mb-10 max-w-2xl text-center text-slate-600">
+        We propose to decompose each interaction into a hierarchy of progressive levels of social reasoning: contextual, behavioral, interpersonal, and an open-ended description that integrates all of these cues. NEST's dense annotation (12.5 questions per clip) allows evaluation similarly to how child development codes interactions, by disaggregating complex concepts instead of relying on a global accuracy score.
       </p>
-      <!-- live hierarchy widget, kept as its own file -->
+
+      <!-- (a) The NEST schema — live hierarchy widget, kept as its own file -->
+      <h3 class="mb-3 text-center text-sm font-bold uppercase tracking-widest text-slate-400">The NEST schema</h3>
       <iframe id="hierarchyFrame" src="./hierarchy.html" title="NEST interaction hierarchy"
               scrolling="no" class="w-full rounded-2xl border border-slate-200"
               style="height:560px;border:1px solid #e5e7eb"></iframe>
-    </section>
 
-    <!-- ╔═══════════════════ EXPLORE (centerpiece) ═══════════════════╗ -->
-    <section id="explore" class="border-y border-slate-100 bg-slate-50/60">
-      <div class="mx-auto max-w-5xl px-6 py-16">
-        <h2 class="mb-2 text-center text-2xl font-bold">Explore the benchmark</h2>
-        <p class="mx-auto mb-10 max-w-2xl text-center text-slate-600">
-          A clip paired with its hierarchical questions. <span class="filler">[ a few cleared example clips will be selectable here. ]</span>
+      <!-- (b) Explore the benchmark — viewer is rendered from data.js -->
+      <div id="explore" class="mt-16">
+        <h3 class="mb-2 text-center text-sm font-bold uppercase tracking-widest text-slate-400">Explore the benchmark</h3>
+        <p class="mx-auto mb-8 max-w-2xl text-center text-slate-600">
+          Pick a clip and see how its questions build up the four levels of reasoning.
         </p>
+        <!-- safelist: ensures the CDN Tailwind generates these level classes used by data.js render -->
+        <div class="hidden border-ctx border-beh border-inter border-open text-ctx text-beh text-inter text-open bg-ctx bg-beh bg-inter bg-open bg-ctx/15 bg-beh/20 bg-inter/15 bg-open/15 ring-slate-900"></div>
 
         <div class="grid gap-8 lg:grid-cols-2">
-          <!-- video -->
+          <!-- media + clip selector -->
           <div>
-            <div class="flex aspect-video w-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-100">
-              <span class="filler text-sm">▶ [ example clip — HTML5 &lt;video&gt; player ]</span>
-            </div>
-            <div class="mt-3 flex gap-2">
-              <div class="h-14 w-20 rounded-md border-2 border-slate-900 bg-slate-200"></div>
-              <div class="h-14 w-20 rounded-md bg-slate-200"></div>
-              <div class="h-14 w-20 rounded-md bg-slate-200"></div>
-              <span class="filler self-center text-xs">[clip thumbnails]</span>
-            </div>
+            <div id="clipStage" class="relative overflow-hidden rounded-xl border border-slate-200 bg-slate-100"></div>
+            <p id="clipCaption" class="mt-2 text-center text-xs text-slate-500"></p>
+            <div id="clipThumbs" class="mt-3 flex flex-wrap justify-center gap-2"></div>
           </div>
 
-          <!-- QA hierarchy -->
-          <div class="space-y-3">
-            <div class="rounded-lg border-l-4 border-ctx bg-white p-4 shadow-sm">
-              <div class="text-xs font-bold uppercase tracking-wide text-ctx">Contextual</div>
-              <p class="mt-1 text-sm"><span class="font-medium">Q:</span> Where are they? <span class="filler">[filler Q]</span></p>
-              <p class="text-sm text-slate-500"><span class="font-medium">A:</span> In a library. <span class="filler">[filler A]</span></p>
-            </div>
-            <div class="rounded-lg border-l-4 border-beh bg-white p-4 shadow-sm">
-              <div class="text-xs font-bold uppercase tracking-wide text-beh">Behavioral</div>
-              <p class="mt-1 text-sm"><span class="font-medium">Q:</span> What is red doing at second 3? <span class="filler">[filler Q]</span></p>
-              <p class="text-sm text-slate-500"><span class="font-medium">A:</span> Pointing. <span class="filler">[filler A]</span></p>
-            </div>
-            <div class="rounded-lg border-l-4 border-inter bg-white p-4 shadow-sm">
-              <div class="text-xs font-bold uppercase tracking-wide text-inter">Interpersonal</div>
-              <p class="mt-1 text-sm"><span class="font-medium">Q:</span> How does green respond to red pointing? <span class="filler">[filler Q]</span></p>
-              <p class="text-sm text-slate-500"><span class="font-medium">A:</span> Smiles. <span class="filler">[filler A]</span></p>
-            </div>
-            <div class="rounded-lg border-l-4 border-open bg-white p-4 shadow-sm">
-              <div class="text-xs font-bold uppercase tracking-wide text-open">Open</div>
-              <p class="mt-1 text-sm"><span class="font-medium">Q:</span> Describe the interaction. <span class="filler">[filler Q]</span></p>
-              <p class="text-sm text-slate-500"><span class="font-medium">A:</span> Person red points to green's book and green smiles… <span class="filler">[filler A]</span></p>
-            </div>
+          <!-- QA hierarchy (per selected clip) -->
+          <div>
+            <div id="clipParticipants" class="mb-3 flex flex-wrap gap-3 text-xs font-medium"></div>
+            <div id="qaPanel" class="space-y-3"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ╔══════════════════════════ FINDINGS ══════════════════════════╗ -->
-    <section id="findings" class="mx-auto max-w-4xl px-6 py-16">
-      <h2 class="mb-10 text-center text-2xl font-bold">Key findings</h2>
-      <div class="space-y-6">
+    <!-- ╔═══════ §4  WHY CREATE A BENCHMARK? ═══════╗
+         Motivating paragraph + a capability comparison vs. existing datasets
+         (rows = datasets, columns = capabilities, NEST's row highlighted). -->
+    <section id="why" class="border-y border-slate-100 bg-slate-50/60">
+      <div class="mx-auto max-w-5xl px-6 py-16">
+        <h2 class="mb-2 text-center text-2xl font-bold">Why create a benchmark?</h2>
+        <p class="mx-auto mb-10 max-w-3xl text-center text-slate-600">
+          Existing video benchmarks miss the nonverbal, child-centric social cues that matter most in
+          early development. <span class="filler">[ filler motivation — replace with the gap NEST fills. ]</span>
+        </p>
+
+        <div class="grid items-start gap-8 lg:grid-cols-2">
+          <!-- motivating figure -->
+          <figure>
+            <div class="flex aspect-[4/3] w-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-white">
+              <span class="filler text-sm">[ motivating figure — drop into <code>figures/</code> ]</span>
+            </div>
+            <figcaption class="mt-2 text-center text-sm text-slate-500">
+              <span class="filler">[ figure caption ]</span>
+            </figcaption>
+          </figure>
+
+          <!-- dataset comparison table -->
+          <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+            <table class="min-w-full bg-white text-sm">
+              <thead class="bg-slate-100 text-slate-600">
+                <tr>
+                  <th class="px-3 py-3 text-left font-semibold">Benchmark</th>
+                  <th class="px-3 py-3 text-center font-semibold">Video</th>
+                  <th class="px-3 py-3 text-center font-semibold">Child-centric</th>
+                  <th class="px-3 py-3 text-center font-semibold">Nonverbal</th>
+                  <th class="px-3 py-3 text-center font-semibold">Hierarchical&nbsp;QA</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 filler">
+                <tr><td class="px-3 py-3 text-slate-800">Prior dataset A</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✗</td><td class="px-3 py-3 text-center">✗</td><td class="px-3 py-3 text-center">✗</td></tr>
+                <tr><td class="px-3 py-3 text-slate-800">Prior dataset B</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✗</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✗</td></tr>
+                <tr class="bg-slate-900/[.04] font-medium not-italic text-slate-900">
+                  <td class="px-3 py-3 font-bold">NEST (ours)</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✓</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔═══════ §5  BENCHMARK RESULTS HIGHLIGHTS ═══════╗
+         Lead with the story: per-level "collapse" chart + finding cards,
+         with the full Table 1 available in an expandable below. -->
+    <section id="results" class="mx-auto max-w-5xl px-6 py-16">
+      <h2 class="mb-2 text-center text-2xl font-bold">Benchmark results highlights</h2>
+      <p class="mx-auto mb-10 max-w-2xl text-center text-slate-600">
+        Accuracy drops sharply as reasoning moves up the hierarchy.
+        <span class="filler">[ filler — replace with the headline result. ]</span>
+      </p>
+
+      <!-- per-level accuracy chart -->
+      <div class="mb-12 flex aspect-[16/7] w-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50">
+        <span class="filler text-sm">[ per-level accuracy chart — the "collapse" across contextual → open ]</span>
+      </div>
+
+      <!-- finding cards -->
+      <div class="grid gap-6 sm:grid-cols-3">
         <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
           <div class="text-sm font-bold text-slate-400">Finding 1</div>
-          <p class="mt-1 text-lg font-medium">Strong contextual recognition, sharp collapse on behavioral &amp; interpersonal cues.
-            <span class="filler text-base font-normal">[ filler takeaway. ]</span></p>
+          <p class="mt-1 font-medium">Strong contextual recognition, sharp collapse on behavioral &amp; interpersonal cues.
+            <span class="filler text-sm font-normal">[ filler. ]</span></p>
         </div>
         <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
           <div class="text-sm font-bold text-slate-400">Finding 2</div>
-          <p class="mt-1 text-lg font-medium">Models under-predict child–child interactions and miss brief temporal cues.
-            <span class="filler text-base font-normal">[ filler takeaway. ]</span></p>
+          <p class="mt-1 font-medium">Models under-predict child–child interactions and miss brief temporal cues.
+            <span class="filler text-sm font-normal">[ filler. ]</span></p>
         </div>
         <div class="rounded-xl bg-slate-50 p-6 ring-1 ring-slate-100">
           <div class="text-sm font-bold text-slate-400">Finding 3</div>
-          <p class="mt-1 text-lg font-medium">Poor consequence grounding persists in real coaching workflows.
-            <span class="filler text-base font-normal">[ filler takeaway. ]</span></p>
+          <p class="mt-1 font-medium">Poor consequence grounding persists in real coaching workflows.
+            <span class="filler text-sm font-normal">[ filler. ]</span></p>
         </div>
       </div>
-    </section>
 
-    <!-- ╔══════════════════════════ RESULTS ══════════════════════════╗ -->
-    <section id="results" class="border-y border-slate-100 bg-slate-50/60">
-      <div class="mx-auto max-w-5xl px-6 py-16">
-        <h2 class="mb-2 text-center text-2xl font-bold">Benchmark results</h2>
-        <p class="mx-auto mb-8 max-w-2xl text-center text-slate-600">
-          <span class="filler">[ filler table — to be filled with the real numbers from the paper. ]</span>
-        </p>
-        <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+      <!-- full results table (expandable) -->
+      <details class="mt-10 rounded-xl ring-1 ring-slate-200">
+        <summary class="cursor-pointer select-none px-5 py-4 text-sm font-semibold text-slate-700">Show full results table</summary>
+        <div class="overflow-x-auto border-t border-slate-200">
           <table class="min-w-full bg-white text-sm">
             <thead class="bg-slate-100 text-slate-600">
               <tr>
@@ -225,6 +318,23 @@
             </tbody>
           </table>
         </div>
+      </details>
+    </section>
+
+    <!-- ╔═══════ DATA & LICENSE ═══════╗
+         Kept brief: a short license note + a pointer to the GitHub repo,
+         where the full access instructions / data-use agreement live. -->
+    <section id="data" class="border-y border-slate-100 bg-slate-50/60">
+      <div class="mx-auto max-w-3xl px-6 py-16 text-center">
+        <h2 class="mb-4 text-2xl font-bold">Data &amp; license</h2>
+        <p class="mx-auto max-w-2xl leading-relaxed text-slate-700">
+          NEST contains naturalistic footage of young children. The dataset is released for
+          non-commercial research use only; full access instructions and the data-use agreement
+          are in the GitHub repository.
+          <span class="filler">[ filler — state the license (e.g. CC BY-NC 4.0). ]</span>
+        </p>
+        <!-- update href to the repo (or its data/access section) -->
+        <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">💻 Access instructions on GitHub</a>
       </div>
     </section>
 
@@ -242,8 +352,135 @@
   </main>
 
   <footer class="border-t border-slate-200 py-8 text-center text-sm text-slate-400">
-    Layout preview · NEST · Stanford University
+    NEST · Stanford University
   </footer>
+
+  <!-- count up the key statistics when they scroll into view -->
+  <script>
+    (function(){
+      const fmt=(n,comma)=> comma ? Math.round(n).toLocaleString('en-US') : String(Math.round(n));
+      function run(el){
+        const to=+el.dataset.to, comma=el.dataset.comma, pre=el.dataset.prefix||'', suf=el.dataset.suffix||'';
+        const dur=1100, t0=performance.now();
+        function step(now){
+          const p=Math.min(1,(now-t0)/dur);
+          const eased=1-Math.pow(1-p,3);          // easeOutCubic
+          el.textContent=pre+fmt(to*eased,comma)+suf;
+          if(p<1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      const stats=document.querySelectorAll('.stat');
+      if(!('IntersectionObserver' in window)){ stats.forEach(run); return; }
+      const io=new IntersectionObserver((entries,obs)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ run(e.target); obs.unobserve(e.target); } });
+      },{threshold:.4});
+      stats.forEach(s=>io.observe(s));
+    })();
+  </script>
+
+  <!-- Explore the benchmark — render the clip + hierarchical QA from data.js -->
+  <script src="./data.js"></script>
+  <script>
+    (function(){
+      if(typeof EXAMPLES==='undefined' || !EXAMPLES.length) return;
+      const LV = {
+        contextual:   {name:'Contextual',    text:'text-ctx',   border:'border-ctx',   chip:'bg-ctx/15',   ring:'#5887B0'},
+        behavioral:   {name:'Behavioral',    text:'text-beh',   border:'border-beh',   chip:'bg-beh/20',   ring:'#E0A526'},
+        interpersonal:{name:'Interpersonal', text:'text-inter', border:'border-inter', chip:'bg-inter/15', ring:'#89759C'},
+        open:         {name:'Open',          text:'text-open',  border:'border-open',  chip:'bg-open/15',  ring:'#B8569B'},
+      };
+      const stage=document.getElementById('clipStage');
+      const caption=document.getElementById('clipCaption');
+      const thumbs=document.getElementById('clipThumbs');
+      const parts=document.getElementById('clipParticipants');
+      const qa=document.getElementById('qaPanel');
+      const thumbBase='h-14 w-20 overflow-hidden rounded-md bg-slate-200 bg-cover bg-center transition';
+      let regionBox=null;
+
+      function media(ex){
+        stage.innerHTML='';
+        let el;
+        if(ex.video){
+          el=document.createElement('video');
+          el.src=ex.video; if(ex.poster) el.poster=ex.poster;
+          el.controls=true; el.muted=true; el.loop=true; el.playsInline=true; el.preload='metadata';
+          el.className='block w-full';
+        }else{
+          el=document.createElement('img');
+          el.src=ex.poster; el.alt=ex.caption||ex.id; el.className='block w-full';
+        }
+        stage.appendChild(el);
+        regionBox=document.createElement('div');
+        regionBox.className='pointer-events-none absolute rounded-md opacity-0 transition-opacity duration-150';
+        regionBox.style.border='3px solid #111827';
+        stage.appendChild(regionBox);
+      }
+      function showRegion(r,color){
+        if(!r||!regionBox) return;
+        regionBox.style.left=r.x+'%'; regionBox.style.top=r.y+'%';
+        regionBox.style.width=r.w+'%'; regionBox.style.height=r.h+'%';
+        regionBox.style.borderColor=color; regionBox.style.opacity='1';
+      }
+      function hideRegion(){ if(regionBox) regionBox.style.opacity='0'; }
+
+      function renderQA(ex){
+        parts.innerHTML='';
+        (ex.participants||[]).forEach(p=>{
+          const s=document.createElement('span');
+          s.className='inline-flex items-center gap-1.5 text-slate-600';
+          s.innerHTML='<span class="inline-block h-3 w-3 rounded-sm" style="background:'+p.color+'"></span>'+p.label;
+          parts.appendChild(s);
+        });
+        qa.innerHTML='';
+        ex.questions.forEach(q=>{
+          const lv=LV[q.level]||LV.open;
+          const card=document.createElement('div');
+          card.className='rounded-lg border-l-4 '+lv.border+' bg-white p-4 shadow-sm ring-1 ring-slate-100';
+          let html='<div class="text-xs font-bold uppercase tracking-wide '+lv.text+'">'+lv.name+'</div>';
+          html+='<p class="mt-1 text-sm font-medium text-slate-800">'+q.q+'</p>';
+          if(q.options){
+            html+='<ul class="mt-2 space-y-1">';
+            q.options.forEach(opt=>{
+              const correct=(opt===q.answer);
+              html+='<li class="flex items-start gap-2 rounded px-2 py-1 text-sm '
+                  +(correct?lv.chip+' font-medium text-slate-800':'text-slate-600')+'">'
+                  +'<span class="mt-px">'+(correct?'✓':'○')+'</span><span>'+opt+'</span></li>';
+            });
+            html+='</ul>';
+          }else{
+            html+='<p class="mt-2 text-sm leading-relaxed text-slate-600">'+(q.a||'')+'</p>';
+          }
+          card.innerHTML=html;
+          if(q.region){
+            card.addEventListener('mouseenter',()=>showRegion(q.region, lv.ring));
+            card.addEventListener('mouseleave',hideRegion);
+          }
+          qa.appendChild(card);
+        });
+      }
+      function render(i){
+        const ex=EXAMPLES[i];
+        media(ex);
+        caption.textContent=ex.caption||'';
+        renderQA(ex);
+        [...thumbs.children].forEach((t,k)=>{
+          t.className=thumbBase+(k===i?' ring-2 ring-slate-900':' ring-1 ring-slate-200 opacity-70 hover:opacity-100');
+        });
+      }
+      if(EXAMPLES.length>1){
+        EXAMPLES.forEach((ex,i)=>{
+          const b=document.createElement('button');
+          b.className=thumbBase;
+          if(ex.poster) b.style.backgroundImage='url('+ex.poster+')';
+          b.title=ex.caption||ex.id;
+          b.addEventListener('click',()=>render(i));
+          thumbs.appendChild(b);
+        });
+      }
+      render(0);
+    })();
+  </script>
 
   <!-- size the hierarchy iframe to its content (same-origin) -->
   <script>
