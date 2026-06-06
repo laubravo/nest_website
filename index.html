@@ -43,6 +43,12 @@
       .gabs-row{ grid-template-columns: 1fr; }
     }
 
+    /* leaderboard: sticky header while scrolling, sortable columns */
+    #lbScroll thead th { position: sticky; top: 0; background:#f1f5f9; z-index:1; }
+    .lb-sort { cursor: pointer; user-select: none; }
+    .lb-sort:hover { color:#0f172a; }
+    .lb-arrow { font-size:.7em; }
+
     /* results: two figures side by side; hover one to bring it forward */
     .rfig { transition: opacity .2s ease, transform .2s ease; }
     .rcompare:hover .rfig { opacity: .4; }            /* dim both on row hover … */
@@ -64,10 +70,9 @@
         <a href="#abstract" class="hover:text-slate-950">Abstract</a>
         <a href="#schema" class="hover:text-slate-950">Annotation schema</a>
         <a href="#explore" class="hover:text-slate-950">Explore</a>
-        <a href="#why" class="hover:text-slate-950">Why NEST</a>
         <a href="#results" class="hover:text-slate-950">Results</a>
-        <a href="#data" class="hover:text-slate-950">Data</a>
-        <a href="#bibtex" class="hover:text-slate-950">BibTeX</a>
+        <a href="#leaderboard" class="hover:text-slate-950">Leaderboard</a>
+        <a href="#bibtex" class="hover:text-slate-950">Citation</a>
       </div>
     </nav>
   </header>
@@ -237,54 +242,7 @@
       </div>
     </section>
 
-    <!-- ╔═══════ §4  WHY CREATE A BENCHMARK? ═══════╗
-         Motivating paragraph + a capability comparison vs. existing datasets
-         (rows = datasets, columns = capabilities, NEST's row highlighted). -->
-    <section id="why" class="border-y border-slate-100 bg-slate-50/60">
-      <div class="mx-auto max-w-5xl px-6 py-16">
-        <h2 class="mb-2 text-center text-2xl font-bold">Why create a benchmark?</h2>
-        <p class="mx-auto mb-10 max-w-3xl text-center text-slate-600">
-          Existing video benchmarks miss the nonverbal, child-centric social cues that matter most in
-          early development. <span class="filler">[ filler motivation — replace with the gap NEST fills. ]</span>
-        </p>
-
-        <div class="grid items-start gap-8 lg:grid-cols-2">
-          <!-- motivating figure -->
-          <figure>
-            <div class="flex aspect-[4/3] w-full items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-white">
-              <span class="filler text-sm">[ motivating figure — drop into <code>figures/</code> ]</span>
-            </div>
-            <figcaption class="mt-2 text-center text-sm text-slate-500">
-              <span class="filler">[ figure caption ]</span>
-            </figcaption>
-          </figure>
-
-          <!-- dataset comparison table -->
-          <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
-            <table class="min-w-full bg-white text-sm">
-              <thead class="bg-slate-100 text-slate-600">
-                <tr>
-                  <th class="px-3 py-3 text-left font-semibold">Benchmark</th>
-                  <th class="px-3 py-3 text-center font-semibold">Video</th>
-                  <th class="px-3 py-3 text-center font-semibold">Child-centric</th>
-                  <th class="px-3 py-3 text-center font-semibold">Nonverbal</th>
-                  <th class="px-3 py-3 text-center font-semibold">Hierarchical&nbsp;QA</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 filler">
-                <tr><td class="px-3 py-3 text-slate-800">Prior dataset A</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✗</td><td class="px-3 py-3 text-center">✗</td><td class="px-3 py-3 text-center">✗</td></tr>
-                <tr><td class="px-3 py-3 text-slate-800">Prior dataset B</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✗</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✗</td></tr>
-                <tr class="bg-slate-900/[.04] font-medium not-italic text-slate-900">
-                  <td class="px-3 py-3 font-bold">NEST (ours)</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✓</td><td class="px-3 py-3 text-center">✓</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ╔═══════ §5  BENCHMARK RESULTS HIGHLIGHTS ═══════╗
+    <!-- ╔═══════ BENCHMARK RESULTS HIGHLIGHTS ═══════╗
          Lead with the story: per-level "collapse" chart + finding cards,
          with the full Table 1 available in an expandable below. -->
     <section id="results" class="mx-auto max-w-5xl px-6 py-16">
@@ -328,57 +286,46 @@
         <!-- shared figure panel, driven by the hovered/selected card -->
         <div id="resultFig" class="flex min-h-[16rem] items-center justify-center rounded-xl border border-slate-200 bg-white p-4 lg:col-span-2"></div>
       </div>
+    </section>
 
-      <!-- full results table (expandable) -->
-      <details class="mt-10 rounded-xl ring-1 ring-slate-200">
-        <summary class="cursor-pointer select-none px-5 py-4 text-sm font-semibold text-slate-700">Show full results table</summary>
-        <div class="overflow-x-auto border-t border-slate-200">
+    <!-- ╔═══════ LEADERBOARD ═══════╗
+         rows rendered/ranked/sorted from RESULTS in the script below -->
+    <section id="leaderboard" class="border-y border-slate-100 bg-slate-50/60">
+      <div class="mx-auto max-w-5xl px-6 py-16">
+        <h2 class="mb-2 text-center text-2xl font-bold">Leaderboard</h2>
+        <p class="mx-auto mb-8 max-w-2xl text-center text-slate-600">
+          How vision–language models and humans compare across the NEST hierarchy.
+        </p>
+        <div id="lbScroll" class="max-h-[19rem] overflow-auto rounded-xl ring-1 ring-slate-200">
           <table class="min-w-full bg-white text-sm">
             <thead class="bg-slate-100 text-slate-600">
               <tr>
-                <th class="px-4 py-3 text-left font-semibold">Model</th>
-                <th class="px-4 py-3 text-right font-semibold text-ctx">Contextual</th>
-                <th class="px-4 py-3 text-right font-semibold text-beh">Behavioral</th>
-                <th class="px-4 py-3 text-right font-semibold text-inter">Interpersonal</th>
-                <th class="px-4 py-3 text-right font-semibold text-open">Open</th>
-                <th class="px-4 py-3 text-right font-semibold">Average</th>
+                <th class="px-3 py-3 text-center font-semibold">#</th>
+                <th class="lb-sort px-4 py-3 text-left font-semibold" data-key="model">Model<span class="lb-arrow"></span></th>
+                <th class="px-3 py-3 text-right font-semibold">Size</th>
+                <th class="lb-sort px-3 py-3 text-right font-semibold text-ctx" data-key="ctx">Contextual<span class="lb-arrow"></span></th>
+                <th class="lb-sort px-3 py-3 text-right font-semibold text-beh" data-key="beh">Behavioral<span class="lb-arrow"></span></th>
+                <th class="lb-sort px-3 py-3 text-right font-semibold text-inter" data-key="inter">Interpersonal<span class="lb-arrow"></span></th>
+                <th class="lb-sort px-3 py-3 text-right font-semibold" data-key="all">All<span class="lb-arrow"></span></th>
+                <th class="lb-sort px-3 py-3 text-right font-semibold text-open" data-key="sim">Open&nbsp;sim<span class="lb-arrow"></span></th>
+                <th class="lb-sort px-3 py-3 text-right font-semibold text-open" data-key="rec">Open&nbsp;rec.<span class="lb-arrow"></span></th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-slate-100 filler">
-              <tr><td class="px-4 py-3 text-slate-800">Model A</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td></tr>
-              <tr><td class="px-4 py-3 text-slate-800">Model B</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td></tr>
-              <tr><td class="px-4 py-3 text-slate-800">Human</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td><td class="px-4 py-3 text-right">00.0</td></tr>
-            </tbody>
+            <tbody id="lbBody" class="divide-y divide-slate-100"></tbody>
           </table>
         </div>
-      </details>
-    </section>
-
-    <!-- ╔═══════ DATA & LICENSE ═══════╗
-         Kept brief: a short license note + a pointer to the GitHub repo,
-         where the full access instructions / data-use agreement live. -->
-    <section id="data" class="border-y border-slate-100 bg-slate-50/60">
-      <div class="mx-auto max-w-3xl px-6 py-16 text-center">
-        <h2 class="mb-4 text-2xl font-bold">Data &amp; license</h2>
-        <p class="mx-auto max-w-2xl leading-relaxed text-slate-700">
-          NEST contains naturalistic footage of young children. The dataset is released for
-          non-commercial research use only; full access instructions and the data-use agreement
-          are in the GitHub repository.
-          <span class="filler">[ filler — state the license (e.g. CC BY-NC 4.0). ]</span>
-        </p>
-        <!-- update href to the repo (or its data/access section) -->
-        <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-700">💻 Access instructions on GitHub</a>
+        <p class="mt-3 text-center text-xs text-slate-400">Click a column to sort · ranked by <strong>All</strong> (mean of the three multiple-choice levels) · Open scored separately (similarity&nbsp;0–3, recall) · best per column in bold</p>
       </div>
     </section>
 
     <!-- ╔══════════════════════════ BIBTEX ══════════════════════════╗ -->
     <section id="bibtex" class="mx-auto max-w-4xl px-6 py-16">
-      <h2 class="mb-4 text-2xl font-bold">BibTeX</h2>
+      <h2 class="mb-4 text-2xl font-bold">Citation</h2>
       <pre class="overflow-x-auto rounded-xl bg-slate-900 p-5 text-sm text-slate-100"><code>@inproceedings{huynh2026nest,
   title     = {Before Words, Beyond Speech: Evaluating Nonverbal Social Reasoning in Early Childhood},
   author    = {Huynh, Marie Amale* and Bravo-S\'anchez, Laura* and Klein, Lauren and
                Haber, Nick and Fisher, Philip and Yeung-Levy, Serena},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks},
+  booktitle = {Arxiv},
   year      = {2026},
 }</code></pre>
     </section>
@@ -409,6 +356,80 @@
         entries.forEach(e=>{ if(e.isIntersecting){ run(e.target); obs.unobserve(e.target); } });
       },{threshold:.4});
       stats.forEach(s=>io.observe(s));
+    })();
+  </script>
+
+  <!-- Leaderboard — ranked from RESULTS (replace with the real numbers) -->
+  <script>
+    (function(){
+      /* LEADERBOARD:START — auto-generated from tables/main.tex by scripts/update_leaderboard.py; run it to refresh, don't hand-edit. */
+      const RESULTS = [
+        {model:'Human', size:'--', human:true, ctx:82.1, beh:92.4, inter:86.5, all:87.0, sim:null, rec:null},
+        {model:'LLaVA-NeXT-Video', size:'7B', ctx:51.8, beh:38.9, inter:41.3, all:44.0, sim:0.8, rec:7.3},
+        {model:'LLaVA-OV', size:'7B', ctx:72.7, beh:52.3, inter:53.6, all:59.6, sim:1.0, rec:14.1},
+        {model:'openPangu-VL', size:'7B', ctx:72.1, beh:60.0, inter:58.1, all:63.4, sim:0.7, rec:8.2},
+        {model:'InternVL3.5', size:'4B', ctx:46.3, beh:39.3, inter:40.1, all:41.9, sim:0.9, rec:10.0},
+        {model:'InternVL3.5', size:'8B', ctx:52.0, beh:45.2, inter:41.1, all:46.1, sim:0.9, rec:10.9},
+        {model:'InternVL3.5', size:'38B', ctx:65.4, beh:56.1, inter:50.9, all:57.4, sim:0.7, rec:7.7},
+        {model:'MiniCPM-V 4.5', size:'8B', ctx:82.6, beh:62.6, inter:57.7, all:67.6, sim:1.0, rec:11.8},
+        {model:'Molmo2', size:'8B', ctx:81.2, beh:66.9, inter:60.6, all:69.6, sim:1.0, rec:14.3},
+        {model:'Keye-VL 1.5', size:'8B', ctx:60.8, beh:48.7, inter:54.9, all:54.8, sim:1.3, rec:17.3},
+        {model:'Qwen3-VL', size:'4B', ctx:55.5, beh:53.8, inter:57.4, all:55.5, sim:1.2, rec:17.4},
+        {model:'Qwen3-VL', size:'8B', ctx:67.4, beh:60.9, inter:49.1, all:59.1, sim:1.3, rec:19.1},
+        {model:'Qwen3-VL', size:'32B', ctx:77.1, beh:65.8, inter:56.4, all:66.4, sim:0.9, rec:21.2},
+        {model:'Qwen3.5', size:'4B', ctx:85.5, beh:67.6, inter:56.1, all:69.7, sim:1.0, rec:9.9},
+        {model:'Qwen3.5', size:'9B', ctx:85.2, beh:69.4, inter:67.0, all:73.9, sim:1.0, rec:10.8},
+        {model:'Qwen3.5', size:'27B', ctx:88.5, beh:73.7, inter:65.8, all:76.0, sim:1.3, rec:21.9},
+        {model:'Gemini 3.1 Flash Lite', size:'--', api:true, ctx:83.2, beh:69.4, inter:56.5, all:69.7, sim:1.1, rec:17.1},
+        {model:'GPT-5 mini', size:'--', api:true, ctx:82.6, beh:69.3, inter:68.4, all:73.4, sim:1.2, rec:27.1},
+      ];
+      /* LEADERBOARD:END */
+      const tb=document.getElementById('lbBody'); if(!tb) return;
+      const valCols=['ctx','beh','inter','all','sim','rec'];
+      const models=RESULTS.filter(r=>!r.human);
+      const humans=RESULTS.filter(r=>r.human);            // pinned on top, never sorted
+      const best={}; valCols.forEach(c=> best[c]=Math.max(...models.map(m=> m[c]==null?-Infinity:m[c])));
+      const fmt=v=> v==null?'—':(Math.round(v*10)/10).toFixed(1);
+      function cell(r,c,bold){
+        const isBest=!r.human && r[c]!=null && r[c]===best[c];
+        const cls=(bold?'font-semibold ':'')+(isBest?'font-bold text-slate-900':'text-slate-700');
+        return '<td class="px-3 py-3 text-right '+cls+'">'+fmt(r[c])+'</td>';
+      }
+      function row(r,rank){
+        const medal = rank? (['🥇','🥈','🥉'][rank-1]||rank) : '—';
+        const rowCls = r.human ? 'bg-slate-50 italic text-slate-600' : (rank===1?'bg-amber-50':'');
+        const sizeDisp = r.human ? '—' : (r.api ? 'API' : r.size);
+        return '<tr class="'+rowCls+'">'
+          +'<td class="px-3 py-3 text-center text-slate-500">'+medal+'</td>'
+          +'<td class="px-4 py-3 font-medium '+(r.human?'':'text-slate-800')+'">'+r.model+'</td>'
+          +'<td class="px-3 py-3 text-right text-xs text-slate-500">'+sizeDisp+'</td>'
+          +cell(r,'ctx')+cell(r,'beh')+cell(r,'inter')+cell(r,'all',true)+cell(r,'sim')+cell(r,'rec')
+          +'</tr>';
+      }
+
+      let sortKey='all', sortDir=-1;                     // default: All, descending
+      function sorted(){
+        return models.slice().sort((a,b)=>{
+          if(sortKey==='model'){ return sortDir*(a.model+a.size).localeCompare(b.model+b.size); }
+          const va=a[sortKey]==null?-Infinity:a[sortKey], vb=b[sortKey]==null?-Infinity:b[sortKey];
+          return sortDir*(va-vb);
+        });
+      }
+      function render(){
+        const sm=sorted();
+        tb.innerHTML = humans.map(r=>row(r,null)).join('') + sm.map((r,i)=>row(r,i+1)).join('');
+        document.querySelectorAll('.lb-sort').forEach(th=>{
+          th.querySelector('.lb-arrow').textContent = th.dataset.key===sortKey ? (sortDir<0?' ▼':' ▲') : '';
+        });
+      }
+      document.querySelectorAll('.lb-sort').forEach(th=>{
+        th.addEventListener('click',()=>{
+          const k=th.dataset.key;
+          if(sortKey===k) sortDir=-sortDir; else { sortKey=k; sortDir=(k==='model')?1:-1; }
+          render();
+        });
+      });
+      render();
     })();
   </script>
 
